@@ -1,0 +1,67 @@
+# ============================================
+# Travility — .gitignore (Visual Studio / .NET Framework)
+# Luật số 1: KHÔNG commit file build. Xem docs/context/01-GIT-WORKFLOW.md
+# ============================================
+
+# --- Kết quả build ---
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Ll]og/
+[Ll]ogs/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.ilk
+*.obj
+
+# --- Thư mục và file người dùng của Visual Studio ---
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# --- NuGet ---
+packages/
+*.nupkg
+*.snupkg
+!packages/build/
+
+# --- Test ---
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# --- KHOÁ VÀ BÍ MẬT (không bao giờ commit) ---
+config/api-keys.json
+appsettings.*.json
+!appsettings.example.json
+*.secrets.json
+secrets/
+
+# --- CSDL cục bộ ---
+*.mdf
+*.ldf
+*.ndf
+
+# --- Tile bản đồ tải về (nặng, mỗi máy tự tải) ---
+Travility.WinForms/Map/MapAssets/tiles/
+
+# --- Hệ điều hành ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Khác ---
+*.tmp
+*.bak
+*~
+
+# --- Công cụ local, không chia sẻ ---
+.remember/
+.claude/settings.local.json

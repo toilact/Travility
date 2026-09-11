@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy file này thành api-keys.json và điền key thật. api-keys.json nằm trong .gitignore — KHÔNG commit nó.",
+  "provider": "Gemini",
+  "gemini": {
+    "apiKey": "ĐIỀN_KEY_CỦA_BẠN",
+    "model": "gemini-2.0-flash"
+  },
+  "openai": {
+    "apiKey": "ĐIỀN_KEY_CỦA_BẠN",
+    "model": "gpt-4o-mini"
+  }
+}
