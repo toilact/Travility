@@ -2,6 +2,11 @@
 
 <!-- Một đến ba câu. Thay đổi này làm được điều gì? -->
 
+## Nhánh
+
+- [ ] PR đi từ `develop-<tên-thành-viên>` của người tạo vào `main`
+- [ ] Tôi không commit hoặc push trực tiếp vào `main`
+
 ## Vì sao
 
 <!-- Tham chiếu tới đặc tả hoặc file context, ví dụ: đặc tả §4, D-engines.md mục 3 -->
@@ -24,4 +29,4 @@
 
 ## Người review
 
-<!-- A ←→ D  ·  B ←→ C -->
+<!-- Chủ dự án là người approve trước khi merge. -->

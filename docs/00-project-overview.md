@@ -89,8 +89,9 @@ Chi tiết ở [`13-git-workflow.md`](./13-git-workflow.md). Tóm tắt:
 2. **Không ai mở Form của người khác trong Designer.**
 3. **Conflict trên `.csproj`: giữ CẢ HAI dòng** `<Compile Include=...>`.
 
-Mọi thay đổi vào `main` đi qua Pull Request. Một người approve; nếu sau 12 giờ
-không ai review thì người tạo PR được tự merge.
+Mọi thay đổi vào `main` đi qua Pull Request từ nhánh
+`develop-<tên-thành-viên>`. Chủ dự án phải approve trước khi merge; người tạo PR
+không tự merge PR của mình.
 
 ---
 
