@@ -9,12 +9,12 @@
 
 | Tuần | Mốc | Nội dung |
 |---|---|---|
-| **1**<br>11–17/09 | Nền móng + **chốt interface** | A: `schema.sql` + seed 30 `Place` mẫu + EF model + Login/MainForm · B: WebView2+Leaflet vẽ marker từ JSON tĩnh · C: khung TripWizard · D: Haversine + NN/2-opt + unit test trên dữ liệu giả |
-| **2**<br>18–24/09 | Dataset đủ 120–150 `Place` | A: Repository + Auth + hash mật khẩu · B: Map Layers + PlaceDetail + cầu 2 chiều · C: Trip CRUD + Transport + Booking · D: Bayesian + `RecommendationScore` + Top-K |
-| **3**<br>25/09–01/10 | Nghiệp vụ lõi xong | C: Budget + Expense + `PricingUnit` + Dashboard · D: pipeline 3 tầng chạy được · B: cluster marker + vẽ `Itinerary` lên map · A: Admin forms |
-| **4**<br>02–08/10 | 🚩 **End-to-end chạy được** | Itinerary UI + so sánh 3 phương án · CheckIn + `ILocationProvider` · Achievement + Passport |
-| **5**<br>09–15/10 | Phần nâng cao | Chatbot + tool use + replay · Xuất báo cáo · Thống kê Admin · **diễn tập trên máy trắng** |
-| **6**<br>16–23/10 | 🔒 **Đóng băng tính năng 16/10** | Chỉ sửa lỗi · dữ liệu demo đẹp · tile offline · tài liệu + slide · tập demo ≥ 3 lần · quay video dự phòng |
+| **1**<br>11–17/09 | Nền móng + **chốt interface** | Thành: schema + EF model + Auth · Tùng: quy tắc Map và dữ liệu `Place` · Nhật: WebView2+Leaflet marker tĩnh + khung Trip Wizard · Quân: Haversine + unit test |
+| **2**<br>18–24/09 | Dataset đủ 120–150 `Place` | Thành: Repository + nghiệp vụ lõi · Tùng: Map Layers + filter · Nhật: `PlaceDetail` + cầu WebView2 ↔ C# · Quân: nearest-neighbor + 2-opt |
+| **3**<br>25/09–01/10 | Nghiệp vụ lõi xong | Thành: Budget + Expense + `PricingUnit` + Recommendation/Itinerary · Tùng: nghiệm thu Map · Nhật: vẽ `RoutePlan`/`Itinerary` · Quân: tích hợp Routing Engine + test |
+| **4**<br>02–08/10 | 🚩 **End-to-end chạy được** | Thành: tích hợp Trip → Itinerary → `CheckIn` · Tùng: nghiệm thu Map · Nhật: Itinerary UI + so sánh 3 phương án · Quân: Admin + `CheckIn`/`TravelPassport` UI |
+| **5**<br>09–15/10 | Phần nâng cao | Thành: Chatbot + tool use + replay nếu đủ điều kiện · Tùng: chốt dữ liệu demo · Nhật: xuất báo cáo và UI polish · Quân: thống kê Admin, QA và **diễn tập trên máy trắng** |
+| **6**<br>16–23/10 | 🔒 **Đóng băng tính năng 16/10** | Thành: chỉ sửa lỗi, Release và tích hợp · Tùng: dữ liệu demo đẹp · Nhật: tài liệu, slide và UI · Quân: tile offline, smoke test, tập demo ≥ 3 lần và video dự phòng |
 
 ### Hai điểm dừng khẩn cấp
 
@@ -73,12 +73,12 @@ code. Ưu tiên bảy cái:
 | # | Tài liệu | Ai | Khi nào | Nguồn có sẵn |
 |---|---|---|---|---|
 | 1 | Use Case Diagram + đặc tả | cả nhóm | Tuần 1–2 | [`01-requirements.md`](./01-requirements.md) |
-| 2 | ERD + Data Dictionary | A | Tuần 1–2 | [`03-database-design.md`](./03-database-design.md) |
-| 3 | Business Rules | C | Tuần 3 | [`08-trip-booking-budget.md`](./08-trip-booking-budget.md) mục 5 |
-| 4 | Kiến trúc lớp + sơ đồ project | lead | Tuần 3 | [`02-system-architecture.md`](./02-system-architecture.md) |
-| 5 | Đặc tả 3 Engine | D | Tuần 4 | [`07-engines.md`](./07-engines.md) |
-| 6 | Thiết kế giao diện | B, C | Tuần 4 | [`05-ui-guidelines.md`](./05-ui-guidelines.md) |
-| 7 | Test Case | cả nhóm | Tuần 5 | [`12-testing-strategy.md`](./12-testing-strategy.md) |
+| 2 | ERD + Data Dictionary | Thành | Tuần 1–2 | [`03-database-design.md`](./03-database-design.md) |
+| 3 | Business Rules | Thành (lõi), Tùng (Map) | Tuần 3 | [`08-trip-booking-budget.md`](./08-trip-booking-budget.md) mục 5 |
+| 4 | Kiến trúc lớp + sơ đồ project | Thành | Tuần 3 | [`02-system-architecture.md`](./02-system-architecture.md) |
+| 5 | Đặc tả 3 Engine | Thành (Recommendation/Itinerary), Quân (Routing) | Tuần 4 | [`07-engines.md`](./07-engines.md) |
+| 6 | Thiết kế giao diện | Nhật, phối hợp Tùng | Tuần 4 | [`05-ui-guidelines.md`](./05-ui-guidelines.md) |
+| 7 | Test Case | Quân điều phối, cả nhóm thực hiện | Tuần 5 | [`12-testing-strategy.md`](./12-testing-strategy.md) |
 
 Phần lớn nội dung **đã có sẵn** trong bộ tài liệu này — việc còn lại chủ yếu là
 vẽ sơ đồ và định dạng theo mẫu của trường.

@@ -46,6 +46,7 @@ Ba thành phần tạo nên giá trị: **Recommendation Engine** (chọn gì),
 | Nhánh, commit, PR | [`13-git-workflow.md`](./13-git-workflow.md) |
 | Đóng gói, kịch bản demo | [`14-packaging-and-demo.md`](./14-packaging-and-demo.md) |
 | Lộ trình, tài liệu phải nộp | [`15-roadmap-and-deliverables.md`](./15-roadmap-and-deliverables.md) |
+| Phân công công việc nhóm | [`16-team-work-allocation.md`](./16-team-work-allocation.md) |
 | Vì sao quyết định như vậy | [`adr/`](./adr/) |
 
 **Thứ tự ưu tiên khi mâu thuẫn:** `CONTEXT.md` → `adr/` → `docs/NN-*.md` →
@@ -69,15 +70,17 @@ Ba thành phần tạo nên giá trị: **Recommendation Engine** (chọn gì),
 
 ## 4. Phân công
 
-| Người | Sở hữu | Tài liệu |
-|---|---|---|
-| **A** (lead) | `schema.sql`, seed, DbContext, Repository, Auth, MainForm, Admin | `03`, `11` |
-| **B** | Smart Map, Layers, PlaceDetail, cầu WebView2 ↔ C# | `06` |
-| **C** | Trip Wizard, Transport, Booking, Budget, Expense | `08` |
-| **D** | 3 Engine, Itinerary UI, Comparison, unit test | `07`, `12` |
+Chi tiết đầy đủ ở [`16-team-work-allocation.md`](./16-team-work-allocation.md).
 
-Check-in/Gamification (`09`) và Chatbot (`10`) chưa gán cứng — ghép tuần 4–5 cho
-ai xong trước.
+| Người | Sở hữu |
+|---|---|
+| **Thành** (lead) | Database, interface, Auth, nghiệp vụ lõi, Recommendation/Itinerary, CheckIn logic, tích hợp và Release |
+| **Tùng** | Nghiệp vụ Map: `Place`, phân loại, Map Layers, filter, dữ liệu và nghiệm thu |
+| **Nhật** | Map UI, Leaflet/WebView2, marker, popup, `PlaceDetail`, Trip Wizard/Itinerary/Comparison UI |
+| **Quân** | `Routing Engine`, unit test, Admin CRUD, CheckIn/`TravelPassport` UI và QA |
+
+Chatbot và Achievement nâng cao chỉ triển khai nếu luồng lõi đã chạy ổn; xem
+điểm dừng trong tài liệu phân công mới.
 
 ---
 
