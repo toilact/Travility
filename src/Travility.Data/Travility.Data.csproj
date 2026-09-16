@@ -38,5 +38,47 @@
       <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Achievement.cs" />
+    <Compile Include="Model\Booking.cs" />
+    <Compile Include="Model\BudgetAllocation.cs" />
+    <Compile Include="Model\BudgetCategory.cs" />
+    <Compile Include="Model\ChatMessage.cs" />
+    <Compile Include="Model\ChatSession.cs" />
+    <Compile Include="Model\CheckIn.cs" />
+    <Compile Include="Model\DistanceMatrix.cs" />
+    <Compile Include="Model\Expense.cs" />
+    <Compile Include="Model\ExternalPlaceMapping.cs" />
+    <Compile Include="Model\Itinerary.cs" />
+    <Compile Include="Model\ItineraryDay.cs" />
+    <Compile Include="Model\ItineraryItem.cs" />
+    <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\PlaceCategory.cs" />
+    <Compile Include="Model\PlaceImage.cs" />
+    <Compile Include="Model\PlaceRating.cs" />
+    <Compile Include="Model\PlaceReview.cs" />
+    <Compile Include="Model\PlaceType.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\RoutePlan.cs" />
+    <Compile Include="Model\RouteSegment.cs" />
+    <Compile Include="Model\ToolExecution.cs" />
+    <Compile Include="Model\TransportOption.cs" />
+    <Compile Include="Model\TravelWallet.cs" />
+    <Compile Include="Model\TravilityEntities.cs" />
+    <Compile Include="Model\Trip.cs" />
+    <Compile Include="Model\TripBudget.cs" />
+    <Compile Include="Model\TripMember.cs" />
+    <Compile Include="Model\TripPlace.cs" />
+    <Compile Include="Model\TripPreference.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\User.partial.cs" />
+    <Compile Include="Model\UserAchievement.cs" />
+    <Compile Include="Model\UserPreference.cs" />
+    <Compile Include="Model\UserProfile.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
