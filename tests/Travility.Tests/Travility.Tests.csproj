@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\..\packages\Microsoft.NET.Test.Sdk.17.11.1\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\..\packages\Microsoft.NET.Test.Sdk.17.11.1\build\net462\Microsoft.NET.Test.Sdk.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45C93B66-F3DA-4ED7-A8E8-ABF9D6C677EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Travility.Tests</RootNamespace>
+    <AssemblyName>Travility.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <LangVersion>7.3</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="nunit.framework, Version=3.14.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.14.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Architecture\DependencyTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Travility.Core\Travility.Core.csproj">
+      <Project>{0C1E5B89-9A63-48B2-B52C-2B8ED11F1D5A}</Project>
+      <Name>Travility.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Travility.Data\Travility.Data.csproj">
+      <Project>{10D9F2CA-A9CF-4EDE-A3CB-E569FBD34109}</Project>
+      <Name>Travility.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Travility.WinForms\Travility.WinForms.csproj">
+      <Project>{9C5574EE-20A2-4E0A-9427-90689223D556}</Project>
+      <Name>Travility.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\Microsoft.NET.Test.Sdk.17.11.1\build\net462\Microsoft.NET.Test.Sdk.targets" Condition="Exists('..\..\packages\Microsoft.NET.Test.Sdk.17.11.1\build\net462\Microsoft.NET.Test.Sdk.targets')" />
+</Project>
