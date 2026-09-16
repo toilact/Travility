@@ -18,6 +18,45 @@ jobs:
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: '[17.0,18.0)'
+
+      - name: Verify Visual Studio 2022 toolchain
+        shell: pwsh
+        run: |
+          $programFilesX86 = [Environment]::GetEnvironmentVariable("ProgramFiles(x86)")
+          $vswhere = Join-Path $programFilesX86 "Microsoft Visual Studio\Installer\vswhere.exe"
+          if (-not (Test-Path -LiteralPath $vswhere)) {
+            throw "vswhere.exe was not found at $vswhere."
+          }
+
+          $installationPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -version '[17.0,18.0)' -property installationPath
+          $installationVersion = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -version '[17.0,18.0)' -property installationVersion
+          if ([string]::IsNullOrWhiteSpace($installationPath) -or [string]::IsNullOrWhiteSpace($installationVersion)) {
+            throw "No Visual Studio 2022 installation with MSBuild was found."
+          }
+
+          Write-Host "Visual Studio installation: $installationPath"
+          Write-Host "Visual Studio version: $installationVersion"
+          if ($installationPath -notmatch "(?i)\\Microsoft Visual Studio\\2022\\") {
+            throw "Visual Studio path is not a Visual Studio 2022 installation: $installationPath."
+          }
+
+          if ($installationVersion -notmatch "^17\.") {
+            throw "Visual Studio version is not v17: $installationVersion."
+          }
+
+          $msbuildOutput = & msbuild -version 2>&1
+          $msbuildExitCode = $LASTEXITCODE
+          $msbuildOutput | ForEach-Object { Write-Host $_ }
+          $msbuildText = $msbuildOutput | Out-String
+          if ($msbuildExitCode -ne 0) {
+            throw "msbuild -version failed with exit code $msbuildExitCode."
+          }
+
+          if ($msbuildText -notmatch "(?m)MSBuild version 17\.") {
+            throw "msbuild -version did not report an MSBuild v17 toolchain."
+          }
 
       - name: Restore packages
         run: nuget restore Travility.sln
@@ -34,9 +73,9 @@ jobs:
             throw "vswhere.exe was not found at $vswhere."
           }
 
-          $installationPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          $installationPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -version '[17.0,18.0)' -property installationPath
           if ([string]::IsNullOrWhiteSpace($installationPath)) {
-            throw "No Visual Studio installation with MSBuild was found."
+            throw "No Visual Studio 2022 installation with MSBuild was found."
           }
 
           $vstestConsole = Join-Path $installationPath "Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
