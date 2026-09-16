@@ -384,7 +384,7 @@ git commit -m "feat(auth): them pbkdf2 password hasher"
 - Consumes: Schema §6 của spec; PBKDF2 format từ Task 2.
 - Produces: `Roles`, `Users`, `UserProfiles`, `UserPreferences`, `TravelWallets` và hai tài khoản demo.
 
-- [ ] **Step 1: Viết smoke assertions trước schema**
+- [x] **Step 1: Viết smoke assertions trước schema**
 
 `database/smoke_test.sql` phải bật lỗi cho SQLCMD:
 
@@ -401,7 +401,7 @@ IF (SELECT COUNT(*) FROM dbo.Users WHERE IsActive = 1) < 2
     THROW 51003, 'Demo users are missing', 1;
 ```
 
-- [ ] **Step 2: Chạy smoke test để xác nhận RED**
+- [x] **Step 2: Chạy smoke test để xác nhận RED**
 
 ```powershell
 sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
@@ -409,7 +409,7 @@ sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
 
 Expected: non-zero exit do `TravilityDev` hoặc `dbo.Users` chưa tồn tại.
 
-- [ ] **Step 3: Viết reset script có guard**
+- [x] **Step 3: Viết reset script có guard**
 
 ```sql
 USE master;
@@ -423,7 +423,7 @@ CREATE DATABASE TravilityDev;
 
 File không nhận database name từ biến và không thao tác database khác.
 
-- [ ] **Step 4: Viết Identity DDL**
+- [x] **Step 4: Viết Identity DDL**
 
 Tạo năm bảng đúng §6.6 của spec. `Users` phải có:
 
@@ -452,7 +452,7 @@ CREATE UNIQUE INDEX UX_Users_NormalizedUsername ON dbo.Users(NormalizedUsername)
 CREATE UNIQUE INDEX UX_Users_NormalizedEmail ON dbo.Users(NormalizedEmail);
 ```
 
-- [ ] **Step 5: Viết reference/demo seed**
+- [x] **Step 5: Viết reference/demo seed**
 
 Seed role bằng `MERGE`. Seed demo dùng đúng dữ liệu xác định sau:
 
@@ -473,7 +473,7 @@ traveler / traveler@travility.local / Traveler@12345
 
 Đặt `MustChangePassword = 0` cho hai tài khoản demo; `PasswordAlgorithm = N'PBKDF2-HMAC-SHA256'`.
 
-- [ ] **Step 6: Chạy Identity scripts và smoke test**
+- [x] **Step 6: Chạy Identity scripts và smoke test**
 
 ```powershell
 sqlcmd -S .\SQLEXPRESS -E -b -i database\reset-dev.sql
@@ -485,7 +485,7 @@ sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
 
 Expected: mọi lệnh exit code 0.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add database
