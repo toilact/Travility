@@ -39,6 +39,17 @@ jobs:
           Write-Host "SQL Server service: $($service.Name) ($($service.Status))"
           Write-Host "sqlcmd: $($sqlCmd.Source)"
 
+      - name: Confirm smoke is RED before database exists
+        shell: pwsh
+        run: |
+          $sqlCmd = (Get-Command sqlcmd.exe).Source
+          & $sqlCmd -S '.\SQLEXPRESS' -E -b -f 65001 -i 'database\smoke_test.sql'
+          if ($LASTEXITCODE -eq 0) {
+            throw 'Smoke test unexpectedly passed before TravilityDev was created.'
+          }
+
+          Write-Host 'Expected RED observed: TravilityDev is not initialized yet.'
+
       - name: Run database reset, schema, seed and smoke
         shell: pwsh
         run: |
