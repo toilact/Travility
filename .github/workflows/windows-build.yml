@@ -1,0 +1,75 @@
+name: Windows build
+
+on:
+  push:
+    branches:
+      - feat/foundation-walking-skeleton
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore packages
+        run: nuget restore Travility.sln
+
+      - name: Build Debug
+        run: msbuild Travility.sln /m /p:Configuration=Debug
+
+      - name: Run architecture tests
+        shell: pwsh
+        run: |
+          $programFilesX86 = [Environment]::GetEnvironmentVariable("ProgramFiles(x86)")
+          $vswhere = Join-Path $programFilesX86 "Microsoft Visual Studio\Installer\vswhere.exe"
+          if (-not (Test-Path -LiteralPath $vswhere)) {
+            throw "vswhere.exe was not found at $vswhere."
+          }
+
+          $installationPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          if ([string]::IsNullOrWhiteSpace($installationPath)) {
+            throw "No Visual Studio installation with MSBuild was found."
+          }
+
+          $vstestConsole = Join-Path $installationPath "Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
+          if (-not (Test-Path -LiteralPath $vstestConsole)) {
+            throw "vstest.console.exe was not found at $vstestConsole."
+          }
+
+          $testAssembly = Join-Path $env:GITHUB_WORKSPACE "tests\Travility.Tests\bin\Debug\Travility.Tests.dll"
+          if (-not (Test-Path -LiteralPath $testAssembly)) {
+            throw "Expected test assembly was not produced: $testAssembly."
+          }
+
+          $vstestOutput = & $vstestConsole $testAssembly 2>&1
+          $vstestExitCode = $LASTEXITCODE
+          $vstestOutput | ForEach-Object { Write-Host $_ }
+          $outputText = $vstestOutput | Out-String
+
+          if ($vstestExitCode -ne 0) {
+            throw "vstest.console.exe failed with exit code $vstestExitCode."
+          }
+
+          if ($outputText -match "(?im)(test discovery.*(failed|error|exception)|failed to discover|no test is available)") {
+            throw "VSTest reported a discovery failure."
+          }
+
+          $testTotal = [regex]::Match($outputText, "(?m)Total tests:\s*(\d+)")
+          if (-not $testTotal.Success) {
+            throw "VSTest did not report a test count."
+          }
+
+          if ([int]$testTotal.Groups[1].Value -eq 0) {
+            throw "VSTest discovered zero tests."
+          }
+
+      - name: Build Release
+        run: msbuild Travility.sln /m /p:Configuration=Release
