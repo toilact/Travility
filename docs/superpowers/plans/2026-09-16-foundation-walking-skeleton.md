@@ -1670,17 +1670,17 @@ git commit -m "feat(routing): them haversine voi detour factor"
 - Consumes: Concrete Data, Auth, logger, session, forms và Haversine.
 - Produces: Walking skeleton chạy thật và hướng dẫn setup có thể lặp lại.
 
-- [ ] **Step 1: Cấu hình connection string**
+- [x] **Step 1: Cấu hình connection string**
 
 ```xml
 <connectionStrings>
   <add name="TravilityEntities"
-       connectionString="metadata=res://*/Model.TravilityModel.csdl|res://*/Model.TravilityModel.ssdl|res://*/Model.TravilityModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;initial catalog=TravilityDev;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;"
-       providerName="System.Data.EntityClient" />
+       connectionString="data source=.\SQLEXPRESS;initial catalog=TravilityDev;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+       providerName="System.Data.SqlClient" />
 </connectionStrings>
 ```
 
-- [ ] **Step 2: Wire composition root**
+- [x] **Step 2: Wire composition root**
 
 Trong `Program.Main`:
 
@@ -1705,7 +1705,7 @@ Application.Run(new TravilityApplicationContext(
     logger));
 ```
 
-- [ ] **Step 3: Chạy database integration scenarios**
+- [x] **Step 3: Chạy database integration scenarios**
 
 Trên database vừa reset:
 
@@ -1721,11 +1721,11 @@ Trên database vừa reset:
 9. Logout và xác nhận session/form cũ đã dispose.
 ```
 
-- [ ] **Step 4: Kiểm tra lỗi SQL và logging**
+- [x] **Step 4: Kiểm tra lỗi SQL và logging**
 
 Dừng service SQL Server Express, thử login, xác nhận UI hiện hướng dẫn an toàn và file `%LocalAppData%\Travility\Logs\travility-yyyyMMdd.log` chứa error ID + exception nhưng không chứa password/connection string. Khởi động lại SQL Server.
 
-- [ ] **Step 5: Chạy toàn bộ verification**
+- [x] **Step 5: Chạy toàn bộ verification**
 
 ```powershell
 nuget restore Travility.sln
@@ -1737,11 +1737,11 @@ sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
 
 Expected: Debug/Release build PASS, toàn bộ NUnit PASS, smoke test exit 0.
 
-- [ ] **Step 6: Cập nhật tài liệu chạy dự án**
+- [x] **Step 6: Cập nhật tài liệu chạy dự án**
 
 README ghi đúng thứ tự script, prerequisites, hai tài khoản demo, lệnh build/test và vị trí log. `docs/12-testing-strategy.md` chốt NUnit 3 thay cho “NUnit hoặc xUnit”.
 
-- [ ] **Step 7: Kiểm tra diff và commit integration**
+- [x] **Step 7: Kiểm tra diff và commit integration**
 
 ```bash
 git status --short
@@ -1750,7 +1750,7 @@ git add src/Travility.WinForms database/smoke_test.sql README.md docs/12-testing
 git commit -m "feat: hoan thanh foundation walking skeleton"
 ```
 
-- [ ] **Step 8: Chuẩn bị PR nghiệm thu**
+- [x] **Step 8: Chuẩn bị PR nghiệm thu**
 
 PR phải ghi chính xác kết quả Debug, Release, NUnit, SQL smoke, hai DPI đã thử và thời gian PBKDF2 benchmark. Không tick mục chưa thực hiện.
 

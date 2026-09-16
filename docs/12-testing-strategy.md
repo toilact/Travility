@@ -23,8 +23,8 @@ Sáu tuần không đủ để test mọi thứ. Test đúng chỗ có giá tr�
 
 ## 2. Công cụ
 
-`tests/Travility.Tests` — **NUnit** hoặc **xUnit** cài qua NuGet. Không dùng
-framework mock; engine nhận `List<Place>` thuần nên không cần mock gì.
+`tests/Travility.Tests` — **NUnit 3** cài qua NuGet (`NUnit 3.14.0`, `NUnit3TestAdapter 4.6.0`, `Microsoft.NET.Test.Sdk 17.11.1`). Không dùng
+framework mock bên ngoài; sử dụng fake in-memory test doubles tự viết. Engine nhận `List<Place>` thuần nên không cần mock gì.
 
 Đặt tên test theo mẫu `Phải_<kỳ vọng>_Khi_<điều kiện>`:
 

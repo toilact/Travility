@@ -59,28 +59,50 @@ config/                 api-keys.example.json
 
 ## Bắt đầu
 
-### Yêu cầu
+### Yêu cầu tiên quyết (Prerequisites)
 
-- Visual Studio (có workload .NET desktop development)
-- SQL Server hoặc SQL Server Express
-- WebView2 Runtime
+- Visual Studio 2022 (Workload *.NET desktop development*, bao gồm .NET Framework 4.8 Targeting Pack)
+- Microsoft SQL Server 2022 hoặc SQL Server Express (`.\SQLEXPRESS`)
+- `sqlcmd` (đi kèm SQL Server hoặc Command Line Utilities)
+- NuGet CLI (`nuget.exe`)
 
-### Cài đặt
+### 1. Khởi tạo cơ sở dữ liệu
 
-```bash
-git clone https://github.com/toilact/Travility.git
-cd Travility
+Chạy các script SQL theo đúng thứ tự sau bằng `sqlcmd` (hoặc mở lần lượt trong SSMS trên database `TravilityDev`):
 
-git config user.name  "Tên của bạn"
-git config user.email "email@cua.ban"
-git config pull.rebase true
+```powershell
+sqlcmd -S .\SQLEXPRESS -E -b -i database\reset-dev.sql
+sqlcmd -S .\SQLEXPRESS -E -b -i database\schema.sql
+sqlcmd -S .\SQLEXPRESS -E -b -i database\seed_reference.sql
+sqlcmd -S .\SQLEXPRESS -E -b -i database\seed_demo.sql
+sqlcmd -S .\SQLEXPRESS -E -b -i database\procedures.sql
+sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
 ```
 
-1. Chạy `database/schema.sql` rồi `database/seed_*.sql` trên SQL Server.
-2. Sửa connection string trong `src/Travility.WinForms/App.config`.
-3. Copy `config/api-keys.example.json` thành `config/api-keys.json`, điền key
-   (chỉ cần nếu chạy chatbot).
-4. Mở `Travility.sln`, build, chạy.
+### 2. Tài khoản Demo xác thực
+
+Dữ liệu mẫu đã bao gồm hai tài khoản thử nghiệm phân quyền:
+
+| Vai trò | Tên đăng nhập | Email | Mật khẩu mặc định |
+|---|---|---|---|
+| **Admin** | `admin` | `admin@travility.local` | `Admin@12345` |
+| **Traveler** | `traveler` | `traveler@travility.local` | `Traveler@12345` |
+
+### 3. Biên dịch và Chạy Kiểm thử (Build & Test)
+
+Khôi phục package và biên dịch giải pháp qua command line:
+
+```powershell
+nuget restore Travility.sln
+msbuild Travility.sln /m /p:Configuration=Debug
+vstest.console.exe tests\Travility.Tests\bin\Debug\Travility.Tests.dll
+msbuild Travility.sln /m /p:Configuration=Release
+```
+
+### 4. Cấu hình & Vị trí Nhật ký (Logging)
+
+- **Chuỗi kết nối CSDL:** Cấu hình tại [src/Travility.WinForms/App.config](src/Travility.WinForms/App.config) (mặc định trỏ tới `.\SQLEXPRESS` và database `TravilityDev`).
+- **Tập tin Log:** Được ghi hàng ngày tại thư mục `%LocalAppData%\Travility\Logs\travility-yyyyMMdd.log`. Hệ thống tự động lưu trữ và xoay vòng dọn dẹp sau 14 ngày.
 
 ---
 
