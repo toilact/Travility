@@ -64,4 +64,5 @@ desktop.ini
 
 # --- Công cụ local, không chia sẻ ---
 .remember/
+.worktrees/
 .claude/settings.local.json
