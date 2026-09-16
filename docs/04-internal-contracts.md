@@ -26,6 +26,21 @@ Có ba hợp đồng: interface C#, cầu JSON WebView2, và schema tool của c
 ### Services
 
 ```csharp
+public interface IAuthenticationService
+{
+    AuthenticationResult Login(string identifier, string password);
+    RegistrationResult   Register(RegistrationRequest request);
+    PasswordResetResult  SetTemporaryPassword(int actorUserId, int targetUserId, string temporaryPassword);
+    ChangePasswordResult ChangePassword(int userId, string currentPassword, string newPassword);
+}
+
+public interface IAppLogger
+{
+    void Info(string component, string message);
+    void Warning(string component, string message);
+    void Error(string component, string errorId, Exception exception);
+}
+
 public interface ITripService
 {
     Trip          Create(TripDraft draft);
@@ -52,6 +67,25 @@ public interface IPlaceService
     Place         GetById(int placeId);
     IList<Place>  GetByCategory(int categoryId);
     IList<Place>  GetForMapLayers(IEnumerable<int> categoryIds);
+}
+
+public interface IBookingService
+{
+    Booking       Create(BookingDraft draft);
+    IList<Booking> GetByTrip(int tripId);
+    void          UpdateStatus(int bookingId, BookingStatus status, int actorUserId);
+}
+
+public interface ICheckInService
+{
+    CheckInResult CheckIn(CheckInRequest request);
+    IList<CheckIn> GetByTrip(int tripId);
+}
+
+public interface IAchievementService
+{
+    IList<Achievement>     EvaluateForCheckIn(int checkInId);
+    IList<UserAchievement> GetByUser(int userId);
 }
 ```
 
@@ -100,15 +134,55 @@ public interface IChatProvider
 ```csharp
 public class Coordinate       { public double Latitude; public double Longitude; }
 public class ScoredPlace      { public Place Place; public decimal Score; }
-public class RoutePlan        { public IList<RouteSegment> Segments;
-                                public double TotalDistanceKm;
-                                public TimeSpan TotalTravelTime;
-                                public decimal TotalTransportCost; }
 public enum  TravelStyle      { Budget, Balanced, Experience }
 public enum  PricingUnit      { PerPerson, PerRoom, PerTrip }
+public enum  BookingStatus    { Pending, Confirmed, Cancelled, Completed }
+
+public class TripDraft        { public int UserId; public string Title; public string Destination;
+                                public DateTime DepartDate; public DateTime ReturnDate;
+                                public int PeopleCount; public decimal InitialBudget; }
+public class PlaceQuery       { public string Keyword; public int? CategoryId;
+                                public decimal? MaxPrice; public Coordinate Near;
+                                public double? RadiusKm; }
+public class RecommendationContext { public int TripId; public int UserId;
+                                     public Coordinate AnchorLocation;
+                                     public decimal RemainingBudget;
+                                     public IList<int> ExcludedPlaceIds; }
+public class RoutingOptions   { public bool PreferWalking; public double MaxDetourKm; }
+public class BookingDraft     { public int TripId; public int? PlaceId; public string ServiceType;
+                                public string BookingReference; public decimal TotalCost;
+                                public string Currency; public DateTime? CheckInDate;
+                                public DateTime? CheckOutDate; public string Notes; }
+public class CheckInRequest   { public int TripId; public int PlaceId; public int UserId;
+                                public Coordinate Location; public DateTime CheckInTime;
+                                public string Notes; }
+public class CheckInResult    { public bool Succeeded; public int? CheckInId; public string Message;
+                                public double DistanceMeters; public bool IsWithinRange;
+                                public IList<int> UnlockedAchievementIds; }
+public class ToolDefinition   { public string Name; public string Description;
+                                public string ParametersJson; }
+public class ChatToolCall     { public string ToolName; public string ArgumentsJson; }
+public class ChatResponse     { public string Content; public IList<ChatToolCall> ToolCalls;
+                                public bool HasToolCalls; }
+```
+
+### Event baseline (8 Events)
+
+```csharp
+// PlaceAdded · PlaceRemoved · HotelChanged · BookingConfirmed
+// BudgetChanged · ExpenseRecorded · CheckInCompleted · ItineraryGenerated
+public class PlaceAddedEventArgs         : EventArgs { public int TripId; public int PlaceId; public int? DayNumber; }
+public class PlaceRemovedEventArgs       : EventArgs { public int TripId; public int PlaceId; public int? DayNumber; }
+public class HotelChangedEventArgs       : EventArgs { public int TripId; public int? OldHotelPlaceId; public int NewHotelPlaceId; }
+public class BookingConfirmedEventArgs   : EventArgs { public int BookingId; public int TripId; public decimal TotalCost; }
+public class BudgetChangedEventArgs      : EventArgs { public int TripId; public decimal NewTotalBudget; }
+public class ExpenseRecordedEventArgs    : EventArgs { public int ExpenseId; public int TripId; public int CategoryId; public decimal Amount; }
+public class CheckInCompletedEventArgs   : EventArgs { public int CheckInId; public int TripId; public int PlaceId; public int UserId; public IList<int> UnlockedAchievementIds; }
+public class ItineraryGeneratedEventArgs : EventArgs { public int TripId; public int ItineraryId; }
 ```
 
 > Mọi kiểu tiền tệ là `decimal`. Không bao giờ `float` hay `double`.
+
 
 ---
 

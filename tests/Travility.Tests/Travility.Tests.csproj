@@ -40,6 +40,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Architecture\CoreContractTests.cs" />
     <Compile Include="Architecture\DataContractTests.cs" />
     <Compile Include="Architecture\DependencyTests.cs" />
     <Compile Include="Security\Pbkdf2PasswordHasherTests.cs" />

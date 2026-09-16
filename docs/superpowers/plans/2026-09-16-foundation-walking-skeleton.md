@@ -833,7 +833,7 @@ git commit -m "feat(data): chot data session va repository contracts"
 - Consumes: Data entities/contracts từ Tasks 5–6.
 - Produces: Public Core API dùng bởi mọi module và Cổng 2.
 
-- [ ] **Step 1: Viết reflection test khóa chữ ký trọng yếu**
+- [x] **Step 1: Viết reflection test khóa chữ ký trọng yếu**
 
 ```csharp
 [Test]
@@ -853,11 +853,11 @@ public void Phai_CoBonAuthUseCase_Khi_LoadAuthenticationContract()
 }
 ```
 
-- [ ] **Step 2: Chạy test để xác nhận RED**
+- [x] **Step 2: Chạy test để xác nhận RED**
 
 Expected: compile fail vì Core contracts chưa tồn tại.
 
-- [ ] **Step 3: Tạo Auth DTO/result contracts**
+- [x] **Step 3: Tạo Auth DTO/result contracts**
 
 ```csharp
 public interface IAuthenticationService
@@ -901,7 +901,7 @@ Tạo các DTO được nhắc trong `docs/04-internal-contracts.md`: `TripDraft
 `ScoredPlace`, `ChatResponse`, `ChatMessage`, `ToolDefinition`. DTO không tham
 chiếu WinForms và không chứa `DbContext`.
 
-- [ ] **Step 4: Chuyển chữ ký đã duyệt từ tài liệu sang interface**
+- [x] **Step 4: Chuyển chữ ký đã duyệt từ tài liệu sang interface**
 
 Dùng nguyên chữ ký trong `docs/04-internal-contracts.md` cho Trip/Budget/Place/ba engine/location/chat.
 
@@ -941,7 +941,7 @@ BudgetChanged · ExpenseRecorded · CheckInCompleted · ItineraryGenerated
 
 Mỗi event args chỉ mang ID và dữ liệu tối thiểu cần cho subscriber; không mang Form hoặc DbContext.
 
-- [ ] **Step 5: Chạy toàn bộ architecture tests**
+- [x] **Step 5: Chạy toàn bộ architecture tests**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug
@@ -950,7 +950,7 @@ vstest.console.exe tests\Travility.Tests\bin\Debug\Travility.Tests.dll /TestCase
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit contract baseline**
+- [x] **Step 6: Commit contract baseline**
 
 ```bash
 git add src/Travility.Core docs/04-internal-contracts.md tests/Travility.Tests/Architecture
