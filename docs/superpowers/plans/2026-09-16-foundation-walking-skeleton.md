@@ -1125,7 +1125,7 @@ git commit -m "feat(data): implement user data session"
 - Consumes: Auth/Data contracts và password hasher.
 - Produces: Register, login, temporary-password và change-password use cases.
 
-- [ ] **Step 1: Viết identifier tests**
+- [x] **Step 1: Viết identifier tests**
 
 ```csharp
 [TestCase("Thanh", IdentifierKind.Username, "THANH")]
@@ -1144,7 +1144,7 @@ public void Phai_TuChoi_Khi_UsernameDangKyChuaKyTuAt()
 }
 ```
 
-- [ ] **Step 2: Viết Auth tests bằng fake session**
+- [x] **Step 2: Viết Auth tests bằng fake session**
 
 Bao phủ tối thiểu:
 
@@ -1247,7 +1247,7 @@ public void Phai_TatCoDoiMatKhau_Khi_DoiMatKhauThanhCong()
 `Pbkdf2PasswordHasher` và `AuthenticationService`; không đọc DB và không dùng
 mocking framework.
 
-- [ ] **Step 3: Chạy tests để xác nhận RED**
+- [x] **Step 3: Chạy tests để xác nhận RED**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug
@@ -1256,11 +1256,11 @@ vstest.console.exe tests\Travility.Tests\bin\Debug\Travility.Tests.dll /TestCase
 
 Expected: FAIL vì normalizer/service chưa tồn tại.
 
-- [ ] **Step 4: Implement normalizer**
+- [x] **Step 4: Implement normalizer**
 
 Trim username/email nhưng không trim password. Dùng `ToUpperInvariant()` cho normalized identifiers. Username dài 3–50, không chứa `@`; email dùng `MailAddress` và giới hạn 254 ký tự.
 
-- [ ] **Step 5: Implement Auth transaction flow**
+- [x] **Step 5: Implement Auth transaction flow**
 
 Register:
 
@@ -1274,11 +1274,11 @@ Login là read-only, không gọi `BeginTransaction()`. Mọi invalid credential
 
 Set temporary/change password mở transaction, cập nhật cả hash/salt/iterations/algorithm và `UpdatedAtUtc`.
 
-- [ ] **Step 6: Chạy Auth tests**
+- [x] **Step 6: Chạy Auth tests**
 
 Expected: toàn bộ PASS; fake session xác nhận số lần begin/save/commit/rollback.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/Travility.Core/Security src/Travility.Core/Services tests/Travility.Tests

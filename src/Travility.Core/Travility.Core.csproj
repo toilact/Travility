@@ -79,8 +79,11 @@
     <Compile Include="Models\TravelStyle.cs" />
     <Compile Include="Models\TripDraft.cs" />
     <Compile Include="Security\IPasswordHasher.cs" />
+    <Compile Include="Security\LoginIdentifier.cs" />
+    <Compile Include="Security\LoginIdentifierNormalizer.cs" />
     <Compile Include="Security\PasswordHash.cs" />
     <Compile Include="Security\Pbkdf2PasswordHasher.cs" />
+    <Compile Include="Services\AuthenticationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Travility.Data\Travility.Data.csproj">
