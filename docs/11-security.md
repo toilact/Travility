@@ -11,29 +11,35 @@
 Lưu plaintext là lỗi bị trừ điểm chắc chắn, và là câu hỏi hội đồng hay hỏi nhất
 về bảo mật.
 
-Dùng **PBKDF2** có sẵn trong .NET Framework, không cần thư viện ngoài:
+Dùng **PBKDF2-HMAC-SHA256** có sẵn trong .NET Framework, thông qua
+`Travility.Core.Security.IPasswordHasher`:
 
 ```csharp
-// Đăng ký
-var salt = new byte[16];
-using (var rng = new RNGCryptoServiceProvider()) rng.GetBytes(salt);
-
-using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000))
-{
-    byte[] hash = pbkdf2.GetBytes(32);
-    // Lưu: PasswordHash (32 byte) + PasswordSalt (16 byte) + Iterations (10000)
-}
+var hasher = new Pbkdf2PasswordHasher(600000);
+PasswordHash stored = hasher.Hash(password);
+bool matches = hasher.Verify(candidatePassword, stored);
 ```
 
-Bảng `Users` lưu `PasswordHash`, `PasswordSalt`, `Iterations` — **không** có cột
-`Password`.
+Baseline **600.000 vòng**, salt CSPRNG riêng **16 byte**, derived key **32 byte**.
+Bảng `Users` lưu `PasswordHash`, `PasswordSalt`, `PasswordIterations` và
+`PasswordAlgorithm` — **không** có cột `Password`. `Verify` sử dụng iteration
+đã lưu theo user để hash cũ có iteration thấp vẫn xác minh được.
 
-Khi so sánh hash, dùng so sánh **thời gian hằng số**, không dùng `==` trên chuỗi.
+Khi so sánh hash, duyệt đủ **32 byte** bằng XOR/OR, không thoát sớm khi gặp byte
+khác nhau. `PasswordHash` sao chép mảng đầu vào và đầu ra để giữ bất biến.
+`Verify` trả `false` nếu password không hợp lệ, hash/salt null hoặc sai độ dài,
+algorithm không khớp chính xác hay iteration không dương.
+
+Trước khi đóng băng cấu hình, benchmark trên **laptop yếu nhất nhóm**, mục tiêu
+mỗi lần hash/verify dưới khoảng một giây. Chỉ cân nhắc giảm iteration nếu vượt
+mốc đó và ghi lại kết quả; build/test trên CI không thay thế benchmark máy demo.
 
 ### Quy tắc mật khẩu tối thiểu
 
-Tối thiểu 8 ký tự. Không ép thêm quy tắc phức tạp — với đồ án nó chỉ làm demo
-khó chịu.
+Từ **8 đến 128 ký tự** (theo `string.Length` của .NET), không trim hoặc normalize
+password trước khi hash. `Hash` từ chối input ngoài khoảng này bằng
+`ArgumentException`; Service phải validate trước và trả lỗi nghiệp vụ phù hợp
+cho UI. Không ép thêm quy tắc phức tạp.
 
 ---
 

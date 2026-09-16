@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Architecture\DependencyTests.cs" />
+    <Compile Include="Security\Pbkdf2PasswordHasherTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Travility.Core\Travility.Core.csproj">

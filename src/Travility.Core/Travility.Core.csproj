@@ -36,6 +36,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreAssemblyMarker.cs" />
+    <Compile Include="Security\IPasswordHasher.cs" />
+    <Compile Include="Security\PasswordHash.cs" />
+    <Compile Include="Security\Pbkdf2PasswordHasher.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Travility.Data\Travility.Data.csproj">
