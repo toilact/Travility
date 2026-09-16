@@ -1459,7 +1459,7 @@ git commit -m "feat(logging): ghi log va xu ly loi toan cuc"
 - Consumes: `IAuthenticationService`, `AuthenticationResult`, `RegistrationResult`, `AuthenticatedUser`.
 - Produces: `LoginSucceeded` event mang `AuthenticatedUser` cho composition root.
 
-- [ ] **Step 1: Dựng forms theo UI rules**
+- [x] **Step 1: Dựng forms theo UI rules**
 
 Mỗi Form dùng `TableLayoutPanel`, Segoe UI 9pt, `AutoScaleMode = Dpi`, `ErrorProvider`. Control names:
 
@@ -1469,11 +1469,11 @@ Register: txtUsername, txtEmail, txtDisplayName, txtPassword, txtConfirmPassword
 Change: txtCurrentPassword, txtNewPassword, txtConfirmPassword, btnChangePassword
 ```
 
-- [ ] **Step 2: Implement validation cục bộ**
+- [x] **Step 2: Implement validation cục bộ**
 
 Rỗng, password confirmation và username chứa `@` được chặn trước service. Không dùng `MessageBox` cho validation. Disable submit button và bật wait cursor trong service call; khôi phục trong `finally`.
 
-- [ ] **Step 3: Ánh xạ error code sang tiếng Việt**
+- [x] **Step 3: Ánh xạ error code sang tiếng Việt**
 
 ```text
 InvalidCredentials → Tên đăng nhập/email hoặc mật khẩu không đúng.
@@ -1485,15 +1485,15 @@ Forbidden → Bạn không có quyền thực hiện thao tác này.
 
 Không hiển thị exception message hoặc stack trace.
 
-- [ ] **Step 4: Implement forced change flow**
+- [x] **Step 4: Implement forced change flow**
 
 Khi login thành công nhưng `MustChangePassword = true`, mở `ChangePasswordDialog`; chỉ phát `LoginSucceeded` sau khi đổi thành công. Hủy dialog quay lại Login.
 
-- [ ] **Step 5: Manual UI verification**
+- [x] **Step 5: Manual UI verification**
 
 Chạy với fake service hoặc DB thật và xác nhận: tab order đúng; Enter submit; nút khóa khi xử lý; ErrorProvider đúng control; DPI 100% và 150% không cắt chữ.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/Travility.WinForms/Auth
