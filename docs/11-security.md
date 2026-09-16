@@ -28,7 +28,13 @@ Bảng `Users` lưu `PasswordHash`, `PasswordSalt`, `PasswordIterations` và
 Khi so sánh hash, duyệt đủ **32 byte** bằng XOR/OR, không thoát sớm khi gặp byte
 khác nhau. `PasswordHash` sao chép mảng đầu vào và đầu ra để giữ bất biến.
 `Verify` trả `false` nếu password không hợp lệ, hash/salt null hoặc sai độ dài,
-algorithm không khớp chính xác hay iteration không dương.
+algorithm không khớp chính xác hay iteration ngoài **1–1.200.000**. Constructor
+cũng chỉ nhận iteration trong khoảng này. Trần 1.200.000 bằng hai lần baseline:
+giới hạn chi phí khi record bị hỏng hoặc bị sửa, đồng thời chừa khả năng tăng
+work factor có kiểm soát. Guard kiểm tra trước khi chạy PBKDF2 và không tính
+toán trên giá trị iteration đầu vào, nên cả `int.MinValue`/`int.MaxValue` đều bị
+từ chối an toàn. Trần này không phải mục tiêu cấu hình; baseline vẫn 600.000 và
+hash cũ có iteration dương thấp hơn baseline vẫn được xác minh.
 
 Trước khi đóng băng cấu hình, benchmark trên **laptop yếu nhất nhóm**, mục tiêu
 mỗi lần hash/verify dưới khoảng một giây. Chỉ cân nhắc giảm iteration nếu vượt

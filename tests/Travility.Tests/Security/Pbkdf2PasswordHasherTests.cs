@@ -57,9 +57,48 @@ namespace Travility.Tests.Security
 
         [TestCase(0)]
         [TestCase(-1)]
+        [TestCase(int.MinValue)]
         public void Phai_TuChoiCauHinh_Khi_IterationKhongDuong(int iterations)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Pbkdf2PasswordHasher(iterations));
+        }
+
+        [TestCase(1200001)]
+        [TestCase(int.MaxValue)]
+        public void Phai_TuChoiCauHinh_Khi_IterationVuotGioiHan(int iterations)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new Pbkdf2PasswordHasher(iterations));
+        }
+
+        [TestCase(1, "WN9eLrq8RUYZz1pDF5Oqf4nxtkVvgmb568bNiKbStZQ=")]
+        [TestCase(1200000, "a2R05UZRfpnCKSkdk5zSQsiQ78Q6uZN2eOgkUFNADYQ=")]
+        public void Phai_ChapNhanIteration_Khi_ONgayBien(int iterations, string expectedHash)
+        {
+            var stored = new PasswordHash(Convert.FromBase64String(expectedHash),
+                Encoding.UTF8.GetBytes("1234567890abcdef"), iterations, "PBKDF2-HMAC-SHA256");
+            var hasher = new Pbkdf2PasswordHasher(iterations);
+
+            Assert.That(hasher.Verify("password", stored), Is.True);
+        }
+
+        [Test]
+        public void Phai_TuChoiHashDung_Khi_IterationVuotGioiHan()
+        {
+            // Hash hợp lệ tính độc lập để thiếu guard không thể tình cờ trả false.
+            var stored = new PasswordHash(
+                Convert.FromBase64String("lhSOmejnySzDrwdOoMkgTly+OSibhlhUsoReC5zsepw="),
+                Encoding.UTF8.GetBytes("1234567890abcdef"), 1200001, "PBKDF2-HMAC-SHA256");
+
+            Assert.That(new Pbkdf2PasswordHasher(600000).Verify("password", stored), Is.False);
+        }
+
+        [Test]
+        [Timeout(1000)]
+        public void Phai_TuChoiNgay_Khi_IterationBangIntMaxValue()
+        {
+            var stored = new PasswordHash(new byte[32], new byte[16], int.MaxValue, "PBKDF2-HMAC-SHA256");
+
+            Assert.That(new Pbkdf2PasswordHasher(600000).Verify("password", stored), Is.False);
         }
 
         [TestCase(null)]
@@ -181,7 +220,7 @@ namespace Travility.Tests.Security
                 yield return new TestCaseData(new PasswordHash(new byte[length], new byte[16], 10000, "PBKDF2-HMAC-SHA256")).SetName("DerivedKeyLength" + length);
             foreach (var length in new[] { 0, 15, 17 })
                 yield return new TestCaseData(new PasswordHash(new byte[32], new byte[length], 10000, "PBKDF2-HMAC-SHA256")).SetName("SaltLength" + length);
-            foreach (var iterations in new[] { 0, -1 })
+            foreach (var iterations in new[] { 0, -1, int.MinValue })
                 yield return new TestCaseData(new PasswordHash(new byte[32], new byte[16], iterations, "PBKDF2-HMAC-SHA256")).SetName("Iterations" + iterations);
             foreach (var algorithm in new[] { null, "", "PBKDF2-HMAC-SHA1", "pbkdf2-hmac-sha256" })
                 yield return new TestCaseData(new PasswordHash(new byte[32], new byte[16], 10000, algorithm)).SetName("Algorithm_" + (algorithm ?? "null"));

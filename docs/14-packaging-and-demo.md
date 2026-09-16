@@ -93,7 +93,7 @@ cụm địa lý. Tập kỹ hai bước này, nói chậm ở hai bước này.
 | "Ba phương án có phải Pareto không?" | Không. Đó là ba preset trọng số. Pareto Front cần lọc dominance trên tập nghiệm lớn — nhóm em không triển khai. |
 | "Dùng EF rồi sao còn ADO.NET?" | EF cho CRUD nghiệp vụ; ADO.NET cho `DistanceMatrix` và báo cáo thống kê qua stored procedure. |
 | "Nhóm có test không?" | Có, N unit test cho ba engine: ràng buộc ngân sách, giờ mở cửa, không trùng giờ, đối chứng 2-opt với brute-force. |
-| "Mật khẩu lưu thế nào?" | PBKDF2 với salt riêng cho mỗi người dùng, 10.000 vòng lặp. |
+| "Mật khẩu lưu thế nào?" | PBKDF2-HMAC-SHA256, baseline 600.000 vòng, salt CSPRNG riêng 16 byte và hash 32 byte; lưu algorithm/iteration theo user. Benchmark trên laptop yếu nhất nhóm trước khi đóng băng cấu hình, mục tiêu dưới khoảng một giây mỗi lần hash/verify. |
 
 Nguyên tắc trả lời: **nói đúng những gì đã làm.** Trung thực về giới hạn được
 đánh giá cao hơn nói quá rồi bị bắt.

@@ -4,6 +4,9 @@
   600.000 vòng, salt CSPRNG riêng 16 byte, hash 32 byte. Lưu iteration và
   algorithm theo user; benchmark dưới khoảng một giây trên laptop yếu nhất
   trước khi đóng băng cấu hình. Bảng `Users` không có cột `Password`.
+- **Giới hạn iteration 1–1.200.000** trong cả constructor và `Verify`, kiểm tra
+  trước khi chạy PBKDF2. Trần bằng 2 lần baseline để chặn chi phí bất thường từ
+  record hỏng; baseline vẫn 600.000, vẫn xác minh hash cũ có iteration thấp.
 - **Mật khẩu dài 8–128 ký tự**, không trim hay normalize; so sánh hash duyệt
   đủ 32 byte để không phụ thuộc vị trí byte khác nhau. `Verify` trả `false`
   với password/hash sai định dạng; `PasswordHash` sao chép mảng để giữ bất biến.

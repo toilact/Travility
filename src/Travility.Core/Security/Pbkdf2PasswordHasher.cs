@@ -8,11 +8,13 @@ namespace Travility.Core.Security
         public const string AlgorithmName = "PBKDF2-HMAC-SHA256";
         private const int SaltLength = 16;
         private const int HashLength = 32;
+        // Chặn record hỏng yêu cầu hàng tỷ vòng; 2x baseline vẫn cho phép nâng cấu hình có kiểm soát.
+        private const int MaximumIterations = 1200000;
         private readonly int _iterations;
 
         public Pbkdf2PasswordHasher(int iterations)
         {
-            if (iterations <= 0)
+            if (!IsValidIterations(iterations))
                 throw new ArgumentOutOfRangeException(nameof(iterations));
 
             _iterations = iterations;
@@ -34,7 +36,7 @@ namespace Travility.Core.Security
         {
             if (!IsValidPassword(password) || stored == null ||
                 !string.Equals(stored.Algorithm, AlgorithmName, StringComparison.Ordinal) ||
-                stored.Iterations <= 0)
+                !IsValidIterations(stored.Iterations))
                 return false;
 
             var salt = stored.Salt;
@@ -61,6 +63,11 @@ namespace Travility.Core.Security
         private static bool IsValidPassword(string password)
         {
             return password != null && password.Length >= 8 && password.Length <= 128;
+        }
+
+        private static bool IsValidIterations(int iterations)
+        {
+            return iterations >= 1 && iterations <= MaximumIterations;
         }
     }
 }
