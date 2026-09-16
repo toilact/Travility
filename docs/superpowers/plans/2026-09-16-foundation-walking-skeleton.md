@@ -1515,15 +1515,15 @@ git commit -m "feat(auth): them giao dien dang ky dang nhap"
 - Consumes: `UserSession`, `NavigationPolicy`, `IAppLogger`.
 - Produces: Role-aware shell, lazy page cache và `LogoutRequested` event.
 
-- [ ] **Step 1: Dựng MainForm layout**
+- [x] **Step 1: Dựng MainForm layout**
 
 Default 1280×800, resizable, sidebar 220px, header 56px, fill content panel và status strip. Màu dùng đúng `docs/05-ui-guidelines.md`; không thêm màu tùy ý.
 
-- [ ] **Step 2: Render navigation từ policy**
+- [x] **Step 2: Render navigation từ policy**
 
 Không hardcode hai menu riêng trong Designer. Tạo button từ `NavigationPolicy.ForRole(session.Role)`. Mỗi button giữ `NavigationItem.Key` trong `Tag`.
 
-- [ ] **Step 3: Implement lazy page cache**
+- [x] **Step 3: Implement lazy page cache**
 
 ```csharp
 private readonly Dictionary<string, UserControl> _pages =
@@ -1543,15 +1543,15 @@ Foundation `PageFactory` chỉ tạo `HomePage`. Các navigation button khác v�
 hiện đúng theo role nhưng bị disable và có tooltip “Chưa khả dụng trong bản
 Foundation”; không tạo page/service/engine giả.
 
-- [ ] **Step 4: Implement logout/dispose**
+- [x] **Step 4: Implement logout/dispose**
 
 Nút Logout phát `LogoutRequested`. `MainForm.Dispose()` dispose từng cached page, clear dictionary, rồi composition root mở `LoginForm` mới; không tái sử dụng session.
 
-- [ ] **Step 5: Manual role verification**
+- [x] **Step 5: Manual role verification**
 
 Login bằng hai tài khoản demo. Xác nhận Traveler không thấy `Users`; Admin không thấy `Trips`; HomePage chỉ được tạo một lần khi mở lặp; logout quay về Login.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/Travility.WinForms/Shell src/Travility.WinForms/Pages
