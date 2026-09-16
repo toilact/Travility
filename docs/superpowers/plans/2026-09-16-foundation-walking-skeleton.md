@@ -235,7 +235,7 @@ git commit -m "build: khoi tao solution net48"
 - Consumes: `Travility.Core` testable không cần UI/DB.
 - Produces: `PasswordHash IPasswordHasher.Hash(string password)` và `bool IPasswordHasher.Verify(...)`.
 
-- [ ] **Step 1: Viết failing tests**
+- [x] **Step 1: Viết failing tests**
 
 ```csharp
 [Test]
@@ -260,7 +260,7 @@ public void Phai_XacMinhDung_Khi_SoSanhMatKhau(string candidate, bool expected)
 }
 ```
 
-- [ ] **Step 2: Chạy test để xác nhận RED**
+- [x] **Step 2: Chạy test để xác nhận RED**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug
@@ -269,7 +269,7 @@ vstest.console.exe tests\Travility.Tests\bin\Debug\Travility.Tests.dll /TestCase
 
 Expected: FAIL do chưa có `Pbkdf2PasswordHasher`.
 
-- [ ] **Step 3: Viết contract và value object**
+- [x] **Step 3: Viết contract và value object**
 
 ```csharp
 public interface IPasswordHasher
@@ -295,7 +295,7 @@ public sealed class PasswordHash
 }
 ```
 
-- [ ] **Step 4: Viết PBKDF2 tối thiểu**
+- [x] **Step 4: Viết PBKDF2 tối thiểu**
 
 ```csharp
 public sealed class Pbkdf2PasswordHasher : IPasswordHasher
@@ -347,7 +347,7 @@ public sealed class Pbkdf2PasswordHasher : IPasswordHasher
 }
 ```
 
-- [ ] **Step 5: Chạy test và benchmark thủ công**
+- [x] **Step 5: Chạy test và benchmark thủ công**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug
@@ -357,11 +357,11 @@ Measure-Command { 1..3 | ForEach-Object { & vstest.console.exe tests\Travility.T
 
 Expected: tests PASS; ghi thời gian benchmark vào PR. Chỉ thay đổi iteration nếu một lần hash/verify vượt một giây trên laptop yếu nhất.
 
-- [ ] **Step 6: Đồng bộ tài liệu bảo mật**
+- [x] **Step 6: Đồng bộ tài liệu bảo mật**
 
 Thay mọi chỗ ghi `10.000 vòng` bằng `PBKDF2-HMAC-SHA256, baseline 600.000 vòng, salt 16 byte, hash 32 byte; benchmark dưới khoảng một giây` trong hai file quy tắc.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/Travility.Core/Security tests/Travility.Tests/Security docs/11-security.md .claude/rules/security.md
