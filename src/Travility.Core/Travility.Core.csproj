@@ -84,6 +84,9 @@
     <Compile Include="Security\PasswordHash.cs" />
     <Compile Include="Security\Pbkdf2PasswordHasher.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Session\NavigationItem.cs" />
+    <Compile Include="Session\NavigationPolicy.cs" />
+    <Compile Include="Session\UserSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Travility.Data\Travility.Data.csproj">

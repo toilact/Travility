@@ -1299,7 +1299,7 @@ git commit -m "feat(auth): implement registration va login"
 - Consumes: `AuthenticatedUser` từ Task 7/10.
 - Produces: Session immutable và menu role-based cho `MainForm`.
 
-- [ ] **Step 1: Viết failing navigation tests**
+- [x] **Step 1: Viết failing navigation tests**
 
 ```csharp
 [Test]
@@ -1319,7 +1319,7 @@ public void Phai_HienQuanTri_Khi_LaAdmin()
 }
 ```
 
-- [ ] **Step 2: Implement immutable session và exact menu keys**
+- [x] **Step 2: Implement immutable session và exact menu keys**
 
 Traveler keys: `Home`, `Map`, `Trips`, `Itineraries`, `Budget`, `CheckIn`, `Passport`; `Assistant` chỉ thêm khi feature flag bật.
 
@@ -1327,7 +1327,7 @@ Admin keys: `Home`, `Places`, `Users`, `TransportOptions`, `Achievements`, `Stat
 
 `UserSession` chỉ có get-only properties và không chứa EF entity.
 
-- [ ] **Step 3: Chạy tests và commit**
+- [x] **Step 3: Chạy tests và commit**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug

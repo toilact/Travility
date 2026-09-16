@@ -46,6 +46,7 @@
     <Compile Include="Authentication\AuthenticationServiceTests.cs" />
     <Compile Include="Security\LoginIdentifierNormalizerTests.cs" />
     <Compile Include="Security\Pbkdf2PasswordHasherTests.cs" />
+    <Compile Include="Session\NavigationPolicyTests.cs" />
     <Compile Include="TestData\AuthFixture.cs" />
     <Compile Include="TestData\FakeTravilityDataSession.cs" />
     <Compile Include="TestData\FakeUserRepository.cs" />
