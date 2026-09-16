@@ -85,6 +85,12 @@
     <Compile Include="Model\UserAchievement.cs" />
     <Compile Include="Model\UserPreference.cs" />
     <Compile Include="Model\UserProfile.cs" />
+    <Compile Include="Repositories\BudgetRepository.cs" />
+    <Compile Include="Repositories\PlaceRepository.cs" />
+    <Compile Include="Repositories\TripRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="TravilityDataSession.cs" />
+    <Compile Include="TravilityDataSessionFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

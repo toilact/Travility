@@ -1044,7 +1044,7 @@ Reviewer chỉ duyệt Cổng 1 khi Debug/Release build, unit tests, database sm
 - Consumes: `ITravilityDataSession`, `IUserRepository`, `TravilityEntities`.
 - Produces: Concrete data access cho `AuthenticationService` và composition root.
 
-- [ ] **Step 1: Viết SQL fixture/smoke cho lookup**
+- [x] **Step 1: Viết SQL fixture/smoke cho lookup**
 
 ```sql
 USE TravilityDev;
@@ -1054,7 +1054,7 @@ IF NOT EXISTS (SELECT 1 FROM dbo.Users WHERE NormalizedEmail = N'ADMIN@TRAVILITY
     THROW 51101, 'Admin email lookup failed', 1;
 ```
 
-- [ ] **Step 2: Implement `UserRepository` không commit**
+- [x] **Step 2: Implement `UserRepository` không commit**
 
 ```csharp
 public sealed class UserRepository : IUserRepository
@@ -1075,13 +1075,13 @@ public sealed class UserRepository : IUserRepository
 }
 ```
 
-- [ ] **Step 3: Implement ba repository đọc tối thiểu**
+- [x] **Step 3: Implement ba repository đọc tối thiểu**
 
 `PlaceRepository`, `TripRepository`, `BudgetRepository` implement đúng toàn bộ
 chữ ký Task 6 bằng LINQ trên cùng `TravilityEntities`. Các phương thức `Add` và
 `Update` chỉ thay đổi tracking state, không gọi `SaveChanges()`.
 
-- [ ] **Step 4: Implement session transaction state**
+- [x] **Step 4: Implement session transaction state**
 
 `BeginTransaction()` phải từ chối begin lần hai. `Commit()` yêu cầu transaction đang mở; commit rồi dispose transaction. `Rollback()` an toàn khi transaction đã mở. `Dispose()` rollback transaction chưa commit rồi dispose context.
 
@@ -1091,7 +1091,7 @@ public int SaveChanges() { return _context.SaveChanges(); }
 
 Factory tạo `new TravilityEntities()` cho mỗi `Create()`.
 
-- [ ] **Step 5: Build và chạy SQL smoke**
+- [x] **Step 5: Build và chạy SQL smoke**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug
@@ -1100,7 +1100,7 @@ sqlcmd -S .\SQLEXPRESS -E -b -i database\user_repository_smoke.sql
 
 Expected: build và SQL smoke thành công.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/Travility.Data database/user_repository_smoke.sql
