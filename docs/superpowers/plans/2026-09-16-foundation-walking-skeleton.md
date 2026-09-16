@@ -706,7 +706,7 @@ git commit -m "feat(data): sinh ef6 model tu schema v1"
 - Consumes: EF entities từ Task 5.
 - Produces: Data abstractions mà Auth/Core dùng từ Task 9 trở đi.
 
-- [ ] **Step 1: Viết compile-time contract test**
+- [x] **Step 1: Viết compile-time contract test**
 
 ```csharp
 [Test]
@@ -720,11 +720,11 @@ public void Phai_TraEntityCuThe_Khi_DungUserRepositoryContract()
 }
 ```
 
-- [ ] **Step 2: Chạy test để xác nhận RED**
+- [x] **Step 2: Chạy test để xác nhận RED**
 
 Expected: test project không compile vì `IUserRepository` chưa tồn tại.
 
-- [ ] **Step 3: Tạo exact contracts**
+- [x] **Step 3: Tạo exact contracts**
 
 ```csharp
 public interface ITravilityDataSession : IDisposable
@@ -790,7 +790,7 @@ public interface IBudgetRepository
 
 Không contract nào trả `IQueryable` hoặc có `SaveChanges()`.
 
-- [ ] **Step 4: Chạy architecture tests**
+- [x] **Step 4: Chạy architecture tests**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug
@@ -799,7 +799,7 @@ vstest.console.exe tests\Travility.Tests\bin\Debug\Travility.Tests.dll /TestCase
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/Travility.Data/Contracts tests/Travility.Tests/Architecture
