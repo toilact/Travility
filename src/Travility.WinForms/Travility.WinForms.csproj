@@ -37,6 +37,8 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\FileAppLogger.cs" />
+    <Compile Include="Infrastructure\GlobalExceptionHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

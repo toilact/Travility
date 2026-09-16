@@ -44,12 +44,14 @@
     <Compile Include="Architecture\DataContractTests.cs" />
     <Compile Include="Architecture\DependencyTests.cs" />
     <Compile Include="Authentication\AuthenticationServiceTests.cs" />
+    <Compile Include="Infrastructure\FileAppLoggerTests.cs" />
     <Compile Include="Security\LoginIdentifierNormalizerTests.cs" />
     <Compile Include="Security\Pbkdf2PasswordHasherTests.cs" />
     <Compile Include="Session\NavigationPolicyTests.cs" />
     <Compile Include="TestData\AuthFixture.cs" />
     <Compile Include="TestData\FakeTravilityDataSession.cs" />
     <Compile Include="TestData\FakeUserRepository.cs" />
+    <Compile Include="TestData\TempDirectory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Travility.Core\Travility.Core.csproj">

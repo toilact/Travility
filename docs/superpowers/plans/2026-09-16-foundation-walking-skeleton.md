@@ -1354,7 +1354,7 @@ git commit -m "feat(shell): them user session va navigation policy"
 - Consumes: `IAppLogger` từ Task 7.
 - Produces: Thread-safe daily logs dưới `%LocalAppData%\Travility\Logs` và safe error dialog.
 
-- [ ] **Step 1: Viết logger tests với temp directory**
+- [x] **Step 1: Viết logger tests với temp directory**
 
 Tạo helper xác định và tự dọn:
 
@@ -1421,11 +1421,11 @@ public void Phai_XoaLogCu_Khi_QuaHanMuoiBonNgay()
 }
 ```
 
-- [ ] **Step 2: Chạy RED rồi implement logger**
+- [x] **Step 2: Chạy RED rồi implement logger**
 
 Mỗi dòng log có `UtcTimestamp|Severity|Component|ErrorId|Message`. Dùng một private lock quanh append. Không nhận hoặc ghi password, hash, salt, API key, connection string.
 
-- [ ] **Step 3: Implement global handler**
+- [x] **Step 3: Implement global handler**
 
 Error ID format: `yyyyMMdd-HHmmss-` + 4 ký tự hex ngẫu nhiên. Handler log exception rồi hiện:
 
@@ -1436,7 +1436,7 @@ Mã lỗi: <error-id>
 
 Đăng ký cả `Application.ThreadException` và `AppDomain.CurrentDomain.UnhandledException` trong `Program.Main`.
 
-- [ ] **Step 4: Chạy tests và commit**
+- [x] **Step 4: Chạy tests và commit**
 
 ```bash
 git add src/Travility.WinForms/Infrastructure src/Travility.WinForms/Program.cs tests/Travility.Tests/Infrastructure
