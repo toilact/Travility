@@ -43,6 +43,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IBudgetRepository.cs" />
+    <Compile Include="Contracts\IPlaceRepository.cs" />
+    <Compile Include="Contracts\ITravilityDataSession.cs" />
+    <Compile Include="Contracts\ITravilityDataSessionFactory.cs" />
+    <Compile Include="Contracts\ITripRepository.cs" />
+    <Compile Include="Contracts\IUserRepository.cs" />
     <Compile Include="Model\Achievement.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\BudgetAllocation.cs" />
