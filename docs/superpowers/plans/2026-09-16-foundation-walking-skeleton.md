@@ -969,7 +969,7 @@ git commit -m "feat(core): chot contracts foundation"
 - Consumes: Solution, schema, EDMX và contracts từ Tasks 1–7.
 - Produces: CI gate cho Debug/test/Release.
 
-- [ ] **Step 1: Thêm workflow**
+- [x] **Step 1: Thêm workflow**
 
 ```yaml
 name: windows-build
@@ -999,7 +999,7 @@ jobs:
         run: msbuild Travility.sln /m /p:Configuration=Release
 ```
 
-- [ ] **Step 2: Chạy cùng chuỗi lệnh cục bộ**
+- [x] **Step 2: Chạy cùng chuỗi lệnh cục bộ**
 
 ```powershell
 nuget restore Travility.sln
@@ -1010,15 +1010,15 @@ msbuild Travility.sln /m /p:Configuration=Release
 
 Expected: toàn bộ PASS.
 
-- [ ] **Step 3: Chạy full database rebuild/smoke**
+- [x] **Step 3: Chạy full database rebuild/smoke**
 
 Chạy sáu script theo đúng Task 4. Expected: exit code 0.
 
-- [ ] **Step 4: Cập nhật PR checklist**
+- [x] **Step 4: Cập nhật PR checklist**
 
 Thêm checkbox xác nhận `database/smoke_test.sql` khi PR đổi schema/EDMX và xác nhận không sửa generated entity bằng tay.
 
-- [ ] **Step 5: Commit Cổng 1**
+- [x] **Step 5: Commit Cổng 1**
 
 ```bash
 git add .github

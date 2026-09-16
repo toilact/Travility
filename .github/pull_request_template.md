@@ -25,6 +25,8 @@
 - [ ] Không commit API key, mật khẩu, connection string thật
 - [ ] Không sửa Form của người khác
 - [ ] Không đổi chữ ký interface trong `Travility.Core` (nếu có đổi, đã báo cả nhóm)
+- [ ] Đã chạy `database/smoke_test.sql` đạt 0 lỗi (bắt buộc khi PR đổi schema/EDMX/procedure)
+- [ ] Không sửa tay code entity/DbContext được sinh tự động (chỉ mở rộng qua partial class)
 - [ ] Commit message theo quy ước `<loại>(<phạm vi>): <mô tả>`
 
 ## Người review
