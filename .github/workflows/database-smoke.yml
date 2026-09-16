@@ -49,6 +49,7 @@ jobs:
           }
 
           Write-Host 'Expected RED observed: TravilityDev is not initialized yet.'
+          exit 0
 
       - name: Run database reset, schema, seed and smoke
         shell: pwsh
