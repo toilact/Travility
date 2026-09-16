@@ -61,6 +61,7 @@ jobs:
             'database\schema.sql',
             'database\seed_reference.sql',
             'database\seed_demo.sql',
+            'database\procedures.sql',
             'database\smoke_test.sql'
           )
 

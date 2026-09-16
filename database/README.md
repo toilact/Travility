@@ -1,16 +1,15 @@
 # Database Foundation
 
-Hiện tại có năm bảng Identity: `Roles`, `Users`, `UserProfiles`,
-`UserPreferences`, `TravelWallets`. Các nhóm bảng còn lại, danh mục tham chiếu
-và stored procedure được bổ sung ở Task 4 của kế hoạch Foundation.
+Hiện tại đã có đầy đủ 34 bảng trong Schema v1, dữ liệu tham chiếu (roles, categories, achievements), tài khoản demo và 3 stored procedure.
 
 | File | Nội dung |
 |---|---|
 | `reset-dev.sql` | Xóa và tạo lại duy nhất database `TravilityDev` sau kiểm tra tên chính xác |
-| `schema.sql` | Bảng, khóa ngoại, check constraint và index; chạy một lần trên database trống |
-| `seed_reference.sql` | Thêm hai role `Admin`, `Traveler` còn thiếu |
+| `schema.sql` | 34 bảng, khóa ngoại, check constraint và index; chạy một lần trên database trống |
+| `seed_reference.sql` | Thêm hai role `Admin`, `Traveler`, 8 nhóm `BudgetCategories`, 7 `PlaceCategories` và 5 `Achievements` |
 | `seed_demo.sql` | Thêm tài khoản demo và profile, preferences, wallet còn thiếu |
-| `smoke_test.sql` | Kiểm tra schema, seed và metadata bằng truy vấn chỉ đọc |
+| `procedures.sql` | Khởi tạo table type `dbo.IntIdList` và 3 stored procedure: `sp_GetDistanceMatrix`, `sp_TopPlacesAddedToTrips`, `sp_AvgExpenseByCategory` |
+| `smoke_test.sql` | Kiểm tra schema, seed, procedure và metadata bằng truy vấn chỉ đọc |
 
 ## Chuẩn bị trên Windows
 
@@ -32,6 +31,8 @@ sqlcmd -S .\SQLEXPRESS -E -b -f 65001 -i database\seed_reference.sql
 if ($LASTEXITCODE -ne 0) { throw 'Reference seed failed' }
 sqlcmd -S .\SQLEXPRESS -E -b -f 65001 -i database\seed_demo.sql
 if ($LASTEXITCODE -ne 0) { throw 'Demo seed failed' }
+sqlcmd -S .\SQLEXPRESS -E -b -f 65001 -i database\procedures.sql
+if ($LASTEXITCODE -ne 0) { throw 'Procedures failed' }
 sqlcmd -S .\SQLEXPRESS -E -b -f 65001 -i database\smoke_test.sql
 if ($LASTEXITCODE -ne 0) { throw 'Smoke test failed' }
 ```
@@ -68,18 +69,13 @@ còn active, kiểm tra các bản ghi liên kết, format hash, miền điểm 
 các unique index/FK đang hoạt động. Sau khi cố ý vô hiệu hóa tài khoản demo
 để thử luồng Auth, cần khôi phục trạng thái đó trước khi chạy smoke.
 
-Mac hiện chưa có SQL Server/`sqlcmd`: kiểm tra cú pháp tĩnh và hash độc lập
-không thay thế việc chạy toàn bộ chuỗi lệnh trên SQL Server. Kết quả thực thi
-SQL RED/GREEN và kiểm tra seed chạy lặp đang chờ môi trường Windows.
-
 - **Chỉ Thành (A) sửa `schema.sql` trong Cổng 1.** Ai cần thêm bảng/cột thì báo A.
-- Foreign key dùng `NO ACTION`; không cascade-delete dữ liệu Identity.
+- Foreign key dùng `NO ACTION`; không cascade-delete dữ liệu Identity và nghiệp vụ.
 - `UserId` là unique ở profile, preferences và wallet; mỗi bảng vẫn có PK
   `int IDENTITY` riêng để EF Database First sinh model đúng quy ước.
 - Thời điểm audit dùng UTC `datetime2(0)`. Default chỉ gán lúc insert; service
   phải cập nhật `UpdatedAtUtc` khi sửa dữ liệu. Không dùng trigger.
-- Số dư dùng `decimal(18,2)`; service cập nhật cùng transaction ghi Expense
-  theo BR-04. DDL chưa áp quy tắc số dư không âm vì spec chưa chốt quy tắc đó.
+- Số dư và tiền tệ dùng `decimal(18,2)`.
 - Mọi seed nằm trong Git. Sau khi đổi schema, báo nhóm và regenerate EDMX
   trên Visual Studio 2022 theo quy trình Database First.
 
