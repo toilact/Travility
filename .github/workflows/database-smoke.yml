@@ -1,0 +1,72 @@
+name: Database smoke
+
+on:
+  push:
+    branches:
+      - feat/foundation-walking-skeleton
+  workflow_dispatch:
+
+jobs:
+  database-smoke:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Locate SQL LocalDB and sqlcmd
+        shell: pwsh
+        run: |
+          $localDb = Get-Command SqlLocalDB.exe -ErrorAction SilentlyContinue
+          if ($null -eq $localDb) {
+            throw 'SqlLocalDB.exe is not installed on the Windows runner.'
+          }
+
+          $sqlCmd = Get-Command sqlcmd.exe -ErrorAction SilentlyContinue
+          if ($null -eq $sqlCmd) {
+            throw 'sqlcmd.exe is not installed on the Windows runner.'
+          }
+
+          Write-Host "SqlLocalDB: $($localDb.Source)"
+          Write-Host "sqlcmd: $($sqlCmd.Source)"
+          & $localDb.Source create SQLEXPRESS
+          if ($LASTEXITCODE -ne 0) {
+            throw "SqlLocalDB create failed with exit code $LASTEXITCODE."
+          }
+
+          & $localDb.Source start SQLEXPRESS
+          if ($LASTEXITCODE -ne 0) {
+            throw "SqlLocalDB start failed with exit code $LASTEXITCODE."
+          }
+
+      - name: Run database reset, schema, seed and smoke
+        shell: pwsh
+        run: |
+          $sqlCmd = (Get-Command sqlcmd.exe).Source
+          $arguments = @('-S', '.\SQLEXPRESS', '-E', '-b', '-f', '65001', '-i')
+          $scripts = @(
+            'database\reset-dev.sql',
+            'database\schema.sql',
+            'database\seed_reference.sql',
+            'database\seed_demo.sql',
+            'database\smoke_test.sql'
+          )
+
+          foreach ($script in $scripts) {
+            Write-Host "Running $script"
+            & $sqlCmd @arguments $script
+            if ($LASTEXITCODE -ne 0) {
+              throw "$script failed with exit code $LASTEXITCODE."
+            }
+          }
+
+      - name: Verify seed rerun is safe
+        shell: pwsh
+        run: |
+          $sqlCmd = (Get-Command sqlcmd.exe).Source
+          foreach ($script in @('database\seed_reference.sql', 'database\seed_demo.sql', 'database\smoke_test.sql')) {
+            Write-Host "Re-running $script"
+            & $sqlCmd -S '.\SQLEXPRESS' -E -b -f 65001 -i $script
+            if ($LASTEXITCODE -ne 0) {
+              throw "$script rerun failed with exit code $LASTEXITCODE."
+            }
+          }
