@@ -1571,7 +1571,7 @@ git commit -m "feat(shell): them main form va dieu huong theo role"
 - Consumes: EF `Place` entity và chữ ký `Distance` đã chốt trong `IRoutingEngine`.
 - Produces: `double RoutingEngine.Distance(Place a, Place b)` dùng chung cho Routing và CheckIn.
 
-- [ ] **Step 1: Viết failing tests**
+- [x] **Step 1: Viết failing tests**
 
 ```csharp
 [Test]
@@ -1610,11 +1610,11 @@ public void Phai_NemArgumentNull_Khi_ThieuDiaDiem()
 }
 ```
 
-- [ ] **Step 2: Chạy RED**
+- [x] **Step 2: Chạy RED**
 
 Expected: FAIL vì `RoutingEngine` chưa tồn tại.
 
-- [ ] **Step 3: Implement công thức**
+- [x] **Step 3: Implement công thức**
 
 Trong Foundation, `RoutingEngine` cung cấp phép tính `Distance` nhưng chưa khai
 báo `: IRoutingEngine`, vì `Optimise` nằm ngoài phạm vi và không được phép thêm
@@ -1642,7 +1642,7 @@ public double Distance(Place a, Place b)
 
 Không gọi API, DB hoặc WinForms.
 
-- [ ] **Step 4: Chạy tests và commit**
+- [x] **Step 4: Chạy tests và commit**
 
 ```powershell
 msbuild Travility.sln /m /p:Configuration=Debug

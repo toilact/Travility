@@ -47,11 +47,13 @@
     <Compile Include="Infrastructure\FileAppLoggerTests.cs" />
     <Compile Include="Security\LoginIdentifierNormalizerTests.cs" />
     <Compile Include="Security\Pbkdf2PasswordHasherTests.cs" />
+    <Compile Include="Engines\RoutingEngineTests.cs" />
     <Compile Include="Session\NavigationPolicyTests.cs" />
     <Compile Include="TestData\AuthFixture.cs" />
     <Compile Include="TestData\FakeTravilityDataSession.cs" />
     <Compile Include="TestData\FakeUserRepository.cs" />
     <Compile Include="TestData\TempDirectory.cs" />
+    <Compile Include="TestData\TestPlaceBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Travility.Core\Travility.Core.csproj">
