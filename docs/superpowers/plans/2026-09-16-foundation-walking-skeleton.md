@@ -507,7 +507,7 @@ git commit -m "feat(database): them identity schema va demo seed"
 - Consumes: Data dictionary §6.6 và business rules trong spec.
 - Produces: Toàn bộ schema v1 và ba stored procedure ADO.NET.
 
-- [ ] **Step 1: Mở rộng smoke test để yêu cầu toàn schema**
+- [x] **Step 1: Mở rộng smoke test để yêu cầu toàn schema**
 
 Thêm danh sách và fail nếu thiếu bảng:
 
@@ -527,7 +527,7 @@ IF EXISTS
 
 Thêm assertions cho 8 `BudgetCategories`, unique `(UserId, AchievementId)`, không có `TravelPassports`, và ba procedure.
 
-- [ ] **Step 2: Chạy smoke test để xác nhận RED**
+- [x] **Step 2: Chạy smoke test để xác nhận RED**
 
 ```powershell
 sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
@@ -535,7 +535,7 @@ sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
 
 Expected: FAIL do domain tables/procedures chưa tồn tại.
 
-- [ ] **Step 3: Thêm các nhóm bảng đúng thứ tự FK**
+- [x] **Step 3: Thêm các nhóm bảng đúng thứ tự FK**
 
 Thêm vào `schema.sql` theo thứ tự:
 
@@ -570,7 +570,7 @@ ON dbo.Itineraries(TripId)
 WHERE IsSelected = 1;
 ```
 
-- [ ] **Step 4: Seed reference data**
+- [x] **Step 4: Seed reference data**
 
 Seed đúng 8 budget category:
 
@@ -581,7 +581,7 @@ LocalTransport · Shopping · Reserve · Other
 
 Seed bảy preference/category labels đúng `CONTEXT.md`; seed năm achievement từ `docs/09-checkin-gamification.md`.
 
-- [ ] **Step 5: Viết ba stored procedure**
+- [x] **Step 5: Viết ba stored procedure**
 
 `procedures.sql` tạo:
 
@@ -612,7 +612,7 @@ GO
 
 Tạo table type `dbo.IntIdList(Id int NOT NULL PRIMARY KEY)` trước procedure đầu.
 
-- [ ] **Step 6: Rebuild database và chạy smoke test hai lần**
+- [x] **Step 6: Rebuild database và chạy smoke test hai lần**
 
 ```powershell
 sqlcmd -S .\SQLEXPRESS -E -b -i database\reset-dev.sql
@@ -628,7 +628,7 @@ sqlcmd -S .\SQLEXPRESS -E -b -i database\smoke_test.sql
 
 Expected: cả hai vòng seed/smoke exit code 0, chứng minh seed chạy lại được.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add database
