@@ -127,7 +127,7 @@
 - Consumes: Không có.
 - Produces: Bốn assembly target .NET Framework 4.8 và project references `Core → Data`, `WinForms → Core + Data`, `Tests → Core + Data + WinForms`.
 
-- [ ] **Step 1: Tạo bốn project bằng Visual Studio 2022**
+- [x] **Step 1: Tạo bốn project bằng Visual Studio 2022**
 
 Trong Visual Studio, tạo blank solution `Travility`; thêm ba **Class Library (.NET Framework)** và một **Windows Forms App (.NET Framework)**, chọn Framework 4.8. Đặt test project là Class Library `.NET Framework 4.8`. Xóa `Class1.cs` và Form mặc định.
 
@@ -151,7 +151,7 @@ private static void Main()
 }
 ```
 
-- [ ] **Step 2: Cài package test và EF**
+- [x] **Step 2: Cài package test và EF**
 
 Trong Package Manager Console:
 
@@ -162,7 +162,7 @@ Install-Package NUnit3TestAdapter -Version 4.6.0 -ProjectName Travility.Tests
 Install-Package Microsoft.NET.Test.Sdk -Version 17.11.1 -ProjectName Travility.Tests
 ```
 
-- [ ] **Step 3: Viết architecture test đầu tiên**
+- [x] **Step 3: Viết architecture test đầu tiên**
 
 ```csharp
 using System.Linq;
@@ -200,7 +200,7 @@ namespace Travility.Core
 }
 ```
 
-- [ ] **Step 4: Restore, build và chạy test**
+- [x] **Step 4: Restore, build và chạy test**
 
 Chạy trong **Developer PowerShell for VS 2022**:
 
@@ -212,7 +212,7 @@ vstest.console.exe tests\Travility.Tests\bin\Debug\Travility.Tests.dll
 
 Expected: build thành công; một test PASS.
 
-- [ ] **Step 5: Commit scaffold**
+- [x] **Step 5: Commit scaffold**
 
 ```bash
 git add Travility.sln src tests
