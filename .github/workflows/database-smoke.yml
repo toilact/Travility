@@ -13,12 +13,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Locate SQL LocalDB and sqlcmd
+      - name: Install SQL Server Express and locate sqlcmd
         shell: pwsh
         run: |
-          $localDb = Get-Command SqlLocalDB.exe -ErrorAction SilentlyContinue
-          if ($null -eq $localDb) {
-            throw 'SqlLocalDB.exe is not installed on the Windows runner.'
+          choco install sql-server-express --version=2022.16.0.20260305 -y --no-progress
+          if ($LASTEXITCODE -ne 0) {
+            throw "SQL Server Express installation failed with exit code $LASTEXITCODE."
+          }
+
+          $service = Get-Service 'MSSQL$SQLEXPRESS' -ErrorAction SilentlyContinue
+          if ($null -eq $service) {
+            throw 'The SQL Server Express SQLEXPRESS service was not installed.'
+          }
+
+          if ($service.Status -ne 'Running') {
+            Start-Service -Name $service.Name
+            $service.WaitForStatus('Running', [TimeSpan]::FromSeconds(30))
           }
 
           $sqlCmd = Get-Command sqlcmd.exe -ErrorAction SilentlyContinue
@@ -26,17 +36,8 @@ jobs:
             throw 'sqlcmd.exe is not installed on the Windows runner.'
           }
 
-          Write-Host "SqlLocalDB: $($localDb.Source)"
+          Write-Host "SQL Server service: $($service.Name) ($($service.Status))"
           Write-Host "sqlcmd: $($sqlCmd.Source)"
-          & $localDb.Source create SQLEXPRESS
-          if ($LASTEXITCODE -ne 0) {
-            throw "SqlLocalDB create failed with exit code $LASTEXITCODE."
-          }
-
-          & $localDb.Source start SQLEXPRESS
-          if ($LASTEXITCODE -ne 0) {
-            throw "SqlLocalDB start failed with exit code $LASTEXITCODE."
-          }
 
       - name: Run database reset, schema, seed and smoke
         shell: pwsh
