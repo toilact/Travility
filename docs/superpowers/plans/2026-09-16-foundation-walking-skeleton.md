@@ -650,13 +650,13 @@ git commit -m "feat(database): hoan thanh schema v1"
 - Consumes: `TravilityDev` schema v1.
 - Produces: `Travility.Data.Model.TravilityEntities` và EF entity classes như `User`, `Place`, `Trip`.
 
-- [ ] **Step 1: Sinh EDMX bằng Visual Studio**
+- [x] **Step 1: Sinh EDMX bằng Visual Studio**
 
 Trong `Travility.Data`: Add → New Item → ADO.NET Entity Data Model → **EF Designer from database** → connection `.\SQLEXPRESS`, database `TravilityDev`, Windows Authentication. Chọn toàn bộ tables; không import procedure vì ba procedure được gọi bằng ADO.NET. Đặt model namespace `TravilityModel`; entity namespace `Travility.Data.Model`.
 
 Không lưu password trong connection string. Đặt connection string name `TravilityEntities`.
 
-- [ ] **Step 2: Thêm partial extension không chạm generated file**
+- [x] **Step 2: Thêm partial extension không chạm generated file**
 
 ```csharp
 namespace Travility.Data.Model
@@ -671,7 +671,7 @@ namespace Travility.Data.Model
 }
 ```
 
-- [ ] **Step 3: Build model**
+- [x] **Step 3: Build model**
 
 ```powershell
 nuget restore Travility.sln
@@ -680,7 +680,7 @@ msbuild Travility.sln /m /p:Configuration=Debug
 
 Expected: build thành công, không có duplicate entity hoặc missing connection string.
 
-- [ ] **Step 4: Kiểm tra generated diff và commit**
+- [x] **Step 4: Kiểm tra generated diff và commit**
 
 ```bash
 git status --short
