@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travility | Khám phá TP.HCM</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark"><span class="brand-dot"></span><span>travility</span></div>
+      <div class="trip-switcher">
+        <span class="eyebrow">CHUYẾN ĐI HIỆN TẠI</span>
+        <strong>TP.HCM · 4 ngày</strong>
+        <span class="muted">20 - 24 tháng 10, 2026</span>
+      </div>
+      <nav class="primary-nav" aria-label="Điều hướng chính">
+        <button class="nav-item is-active" data-view="explore"><span class="nav-icon">⌖</span>Khám phá</button>
+        <button class="nav-item" data-view="trip"><span class="nav-icon">▤</span>Lịch trình của tôi</button>
+        <button class="nav-item" data-view="saved"><span class="nav-icon">♡</span>Địa điểm đã lưu</button>
+        <button class="nav-item" data-view="budget"><span class="nav-icon">₫</span>Ngân sách</button>
+        <button class="nav-item" data-view="passport"><span class="nav-icon">✦</span>Travel Passport</button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="offline-status"><span class="status-dot"></span> Bản đồ sẵn sàng offline</div>
+        <button class="profile-button"><span class="avatar">MN</span><span><strong>Minh Nhật</strong><small>Traveler</small></span><span class="chevron">⌄</span></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="breadcrumb">CHUYẾN ĐI CỦA TÔI <span>/</span> KHÁM PHÁ</p>
+          <h1>Khám phá TP.HCM</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" title="Thông báo">♧<span class="notification-dot"></span></button>
+          <button class="outline-button" data-action="new-trip">+ Tạo chuyến đi</button>
+        </div>
+      </header>
+
+      <section class="hero-strip">
+        <div>
+          <p class="eyebrow accent">ĐI ĐÂU HÔM NAY?</p>
+          <h2>Thành phố không ngủ,<br><em>lịch trình của riêng bạn.</em></h2>
+          <p class="hero-copy">Tìm một nơi ở thật chill, một quán ăn đáng nhớ và những góc phố khiến bạn muốn quay lại.</p>
+        </div>
+        <div class="hero-stat"><span>ĐÃ LƯU</span><strong>12</strong><small>địa điểm cho chuyến đi</small></div>
+      </section>
+
+      <section class="workspace" data-view-panel="explore">
+        <div class="content-column">
+          <div class="section-heading">
+            <div><p class="eyebrow">KHÁM PHÁ THEO NHU CẦU</p><h2>Hôm nay bạn muốn gì?</h2></div>
+            <button class="text-button" data-action="view-all">Xem tất cả <span>→</span></button>
+          </div>
+          <div class="category-row">
+            <button class="category-card category-hotel is-selected" data-filter="hotel"><span class="category-illustration">⌂</span><strong>Ở đâu</strong><small>Khách sạn & homestay</small></button>
+            <button class="category-card category-food" data-filter="food"><span class="category-illustration">✣</span><strong>Ăn gì</strong><small>Quán ngon địa phương</small></button>
+            <button class="category-card category-cafe" data-filter="cafe"><span class="category-illustration">◒</span><strong>Cà phê</strong><small>Góc chill trong phố</small></button>
+            <button class="category-card category-fun" data-filter="fun"><span class="category-illustration">✦</span><strong>Chơi gì</strong><small>Trải nghiệm đáng nhớ</small></button>
+          </div>
+
+          <div class="section-heading compact-heading"><div><p class="eyebrow">GỢI Ý CHO BẠN</p><h2 id="results-title">Nơi ở được yêu thích</h2></div><span class="result-count" id="result-count">24 địa điểm</span></div>
+          <div class="place-grid" id="place-grid">
+            <article class="place-card" data-category="hotel" data-name="The Myst Dong Khoi">
+              <div class="place-image image-myst"><span class="image-tag">ĐƯỢC YÊU THÍCH</span><button class="save-button" aria-label="Lưu địa điểm">♡</button></div>
+              <div class="place-body"><div class="place-meta"><span>KHÁCH SẠN</span><span>1,2 km</span></div><h3>The Myst Dong Khoi</h3><p class="place-location">Quận 1 · Bờ sông Sài Gòn</p><div class="place-footer"><strong>4.8 <span class="star">★</span></strong><span>2.580 đánh giá</span><b>2.450.000 ₫<small>/ đêm</small></b></div></div>
+            </article>
+            <article class="place-card" data-category="hotel" data-name="M Village Hai Ba Trung">
+              <div class="place-image image-mvillage"><button class="save-button" aria-label="Lưu địa điểm">♡</button></div>
+              <div class="place-body"><div class="place-meta"><span>HOMESTAY</span><span>2,8 km</span></div><h3>M Village Hai Bà Trưng</h3><p class="place-location">Quận 3 · Gần hồ Con Rùa</p><div class="place-footer"><strong>4.7 <span class="star">★</span></strong><span>1.102 đánh giá</span><b>980.000 ₫<small>/ đêm</small></b></div></div>
+            </article>
+            <article class="place-card" data-category="hotel" data-name="Maison De Camille">
+              <div class="place-image image-maison"><button class="save-button" aria-label="Lưu địa điểm">♡</button></div>
+              <div class="place-body"><div class="place-meta"><span>HOTEL</span><span>4,1 km</span></div><h3>Maison De Camille</h3><p class="place-location">Bình Thạnh · Kênh Nhiêu Lộc</p><div class="place-footer"><strong>4.6 <span class="star">★</span></strong><span>865 đánh giá</span><b>1.150.000 ₫<small>/ đêm</small></b></div></div>
+            </article>
+          </div>
+          <div class="empty-message" id="empty-message" hidden>Chưa có địa điểm phù hợp trong bản mockup.</div>
+        </div>
+
+        <aside class="map-panel">
+          <div class="map-toolbar"><div><span class="eyebrow">BẢN ĐỒ TP.HCM</span><strong>Khám phá quanh bạn</strong></div><button class="map-control">⌖</button></div>
+          <div class="map-canvas">
+            <div class="map-water"></div><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-block block-a"></div><div class="map-block block-b"></div><div class="map-block block-c"></div>
+            <div class="map-label district-one">QUẬN 1</div><div class="map-label district-three">QUẬN 3</div><div class="map-label district-binhthanh">BÌNH THẠNH</div>
+            <button class="map-pin pin-one" data-place="The Myst Dong Khoi"><span>⌂</span></button><button class="map-pin pin-two" data-place="Bánh Mì Huynh Hoa"><span>✣</span></button><button class="map-pin pin-three" data-place="The Workshop Coffee"><span>◒</span></button><button class="map-pin pin-four" data-place="M Village Hai Bà Trưng"><span>⌂</span></button>
+            <div class="you-are-here"><span></span> Bạn đang ở đây</div>
+            <div class="map-zoom"><button>+</button><button>−</button></div>
+          </div>
+          <div class="map-legend"><span><i class="legend-dot stay"></i> Ở đâu</span><span><i class="legend-dot eat"></i> Ăn gì</span><span><i class="legend-dot cafe"></i> Cà phê</span></div>
+        </aside>
+      </section>
+
+      <section class="trip-preview" data-view-panel="trip" hidden>
+        <div class="section-heading"><div><p class="eyebrow">LỊCH TRÌNH CỦA TÔI</p><h2>Nhịp sống Sài Gòn</h2></div><button class="primary-button">Chia sẻ lịch trình</button></div>
+        <div class="itinerary-tabs"><button class="day-tab is-active" data-day="1">Ngày 1<strong>Di sản Quận 1</strong></button><button class="day-tab" data-day="2">Ngày 2<strong>Cà phê & sáng tạo</strong></button><button class="day-tab" data-day="3">Ngày 3<strong>Ăn chơi địa phương</strong></button></div>
+        <div class="itinerary-layout"><div class="timeline" id="timeline"><div class="timeline-item"><time>08:30</time><div class="timeline-line"><span class="timeline-dot red"></span></div><div><span class="item-type">BẮT ĐẦU NGÀY</span><h3>Bưu điện Thành phố</h3><p>Tham quan · 1 giờ 30 phút</p></div></div><div class="timeline-item"><time>11:00</time><div class="timeline-line"><span class="timeline-dot teal"></span></div><div><span class="item-type">ĂN TRƯA</span><h3>Bánh Mì Huynh Hoa</h3><p>Ẩm thực · 45 phút</p></div></div><div class="timeline-item"><time>14:00</time><div class="timeline-line"><span class="timeline-dot yellow"></span></div><div><span class="item-type">KHÁM PHÁ</span><h3>Chợ Bến Thành</h3><p>Mua sắm · 2 giờ</p></div></div></div><div class="route-summary"><span class="eyebrow">TỔNG QUAN NGÀY 1</span><strong>6,4 km</strong><p>3 địa điểm · 5 giờ 15 phút</p><div class="route-line"><span></span><span></span><span></span></div><button class="outline-button">Xem trên bản đồ</button></div></div>
+      </section>
+
+      <section class="budget-preview" data-view-panel="budget" hidden><div class="section-heading"><div><p class="eyebrow">NGÂN SÁCH CHUYẾN ĐI</p><h2>Kiểm soát từng khoản chi</h2></div><button class="primary-button">+ Ghi chi tiêu</button></div><div class="budget-card"><div><span class="eyebrow">BUDGET</span><strong>8.000.000 ₫</strong><p>Còn lại dự kiến <b>650.000 ₫</b></p></div><div class="budget-ring"><span>92<small>%</small></span></div></div><div class="budget-breakdown"><div><span>Di chuyển</span><b>1.200.000 ₫</b><i><em style="width: 70%"></em></i></div><div><span>Lưu trú</span><b>3.400.000 ₫</b><i><em style="width: 85%"></em></i></div><div><span>Ăn uống</span><b>1.850.000 ₫</b><i><em style="width: 62%"></em></i></div></div></section>
+
+      <section class="simple-view" data-view-panel="saved" hidden><p class="eyebrow">ĐỊA ĐIỂM ĐÃ LƯU</p><h2>Danh sách của bạn đang có 12 địa điểm</h2><p>Những nơi muốn đến sẽ xuất hiện ở đây để thêm nhanh vào Trip.</p><button class="primary-button" data-action="explore">Tiếp tục khám phá</button></section>
+      <section class="simple-view" data-view-panel="passport" hidden><p class="eyebrow">TRAVEL PASSPORT</p><h2>Hành trình của Minh Nhật</h2><p>3 chuyến đi · 18 địa điểm đã check-in · 2 huy hiệu</p><button class="primary-button" data-action="explore">Khám phá địa điểm mới</button></section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
