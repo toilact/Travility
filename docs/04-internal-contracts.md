@@ -125,13 +125,13 @@ JS → C#:   webView.CoreWebView2.WebMessageReceived += OnMessage
 ### C# gửi xuống bản đồ
 
 ```jsonc
-{ "action": "addMarkers",  "places": [ { "id": 1, "lat": 16.05, "lng": 108.24,
+{ "action": "addMarkers",  "places": [ { "id": 1, "lat": 10.7769, "lng": 106.7009,
                                          "category": "hotel", "name": "..." } ] }
 { "action": "clearLayer",  "category": "hotel" }
 { "action": "drawRoute",   "day": 1, "colour": "#e63946",
-                           "points": [ [16.05, 108.24], [16.07, 108.22] ] }
+                           "points": [ [10.7769, 106.7009], [10.7798, 106.6990] ] }
 { "action": "clearRoutes" }
-{ "action": "setUserPin",  "lat": 16.05, "lng": 108.24 }
+{ "action": "setUserPin",  "lat": 10.7769, "lng": 106.7009 }
 { "action": "focusPlace",  "id": 1 }
 ```
 
@@ -139,7 +139,7 @@ JS → C#:   webView.CoreWebView2.WebMessageReceived += OnMessage
 
 ```jsonc
 { "event": "markerClick", "placeId": 1 }
-{ "event": "mapClick",    "lat": 16.05, "lng": 108.24 }   // dùng cho check-in giả lập
+{ "event": "mapClick",    "lat": 10.7769, "lng": 106.7009 }   // dùng cho check-in giả lập
 { "event": "mapReady" }
 ```
 

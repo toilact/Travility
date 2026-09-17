@@ -62,7 +62,7 @@ Ba thành phần tạo nên giá trị: **Recommendation Engine** (chọn gì),
 | CSDL | Microsoft SQL Server, **Database First** ([ADR-0001](./adr/0001-database-first.md)) |
 | Truy cập dữ liệu | Entity Framework (CRUD) **+** ADO.NET (stored procedure) |
 | Ngân sách nhân lực | 4 người × 6 tuần ≈ **380–480 giờ-người** |
-| Dữ liệu | **Tự xây**, 120–150 `Place`, một thành phố (Đà Nẵng) |
+| Dữ liệu | **Tự xây**, 120–150 `Place`, một thành phố (TP.HCM) |
 | Máy demo | Laptop cá nhân của nhóm |
 
 ---

@@ -45,7 +45,7 @@ Dùng thư viện có sẵn qua NuGet. Không cần đẹp, cần chạy.
 
 ## 4. Bảo hiểm demo — chuẩn bị trước 16/10
 
-- [ ] Tile bản đồ Đà Nẵng đã tải, **đã thử với Wi-Fi tắt**
+- [ ] Tile bản đồ TP.HCM đã tải, **đã thử với Wi-Fi tắt**
 - [ ] Một phiên chatbot đã ghi trong `ToolExecutions`, **phát lại được offline**
 - [ ] **Video demo dự phòng** quay đầy đủ kịch bản mục 5
 - [ ] Dữ liệu demo đẹp: tên địa điểm thật, ảnh thật, rating hợp lý
@@ -63,7 +63,7 @@ Demo là một **câu chuyện liền mạch**, không phải đi qua từng For
 ```
  1. Đăng nhập
  2. Smart Map → bật/tắt vài lớp → click marker → xem chi tiết
- 3. Tạo Trip: Đà Nẵng, 4 ngày, 2 người, 8 triệu
+ 3. Tạo Trip: TP.HCM, 4 ngày, 2 người, 8 triệu
  4. Kéo 7 thanh sở thích (Biển 5, Ẩm thực 5, Lịch sử 2)
  5. Top-5 khách sạn → CHỈ RA vì sao khách sạn 4.8★/8200 review
     xếp trên khách sạn 5.0★/4 review          ◄── khoảnh khắc đắt nhất
@@ -86,7 +86,7 @@ cụm địa lý. Tập kỹ hai bước này, nói chậm ở hai bước này.
 
 | Câu hỏi | Trả lời |
 |---|---|
-| "Dữ liệu lấy ở đâu?" | Dataset tự xây, 150 `Place` Đà Nẵng, nhập tay. Kiến trúc `IPlaceProvider` cho phép thay bằng nguồn API thật mà không sửa engine. |
+| "Dữ liệu lấy ở đâu?" | Dataset tự xây, 150 `Place` TP.HCM, nhập tay. Kiến trúc `IPlaceProvider` cho phép thay bằng nguồn API thật mà không sửa engine. |
 | "Sao không dùng khoảng cách đường thật?" | Engine đánh giá hàng vạn phương án nên dùng Haversine có hệ số hiệu chỉnh; đường thật dùng ở bước hiển thị tuyến. |
 | "Sao có chế độ giả lập vị trí?" | Ứng dụng desktop không định vị chính xác, và chúng em đang trong phòng thi cách địa điểm hàng km. Nên tách rõ hai chế độ. |
 | "Thuật toán tối ưu là gì?" | Pipeline ba tầng: chọn tham lam theo tỉ lệ điểm/chi phí, chia ngày theo cụm địa lý, xếp thứ tự bằng NN + 2-opt có kiểm tra khung giờ. |

@@ -141,7 +141,7 @@ cột bên phải:
 | "Triển khai TSP with Time Windows" | "Heuristic Nearest Neighbor + 2-opt, đối chứng brute-force với n ≤ 8" |
 | "Pareto Optimal Solutions" | "Ba preset trọng số theo `TravelStyle`" |
 | "Tìm kiếm phương tiện" | "Mô phỏng tìm kiếm trên dữ liệu tự xây" |
-| "Tích hợp Google Places" | "Dataset tự xây, 150 `Place` khu vực Đà Nẵng" |
+| "Tích hợp Google Places" | "Dataset tự xây, 150 `Place` khu vực TP.HCM" |
 | "Check-in bằng GPS" | "Hai chế độ định vị: API hệ điều hành và giả lập" |
 | "Khoảng cách đường thật" | "Xấp xỉ Haversine × 1.3; đường thật ở bước hiển thị" |
 

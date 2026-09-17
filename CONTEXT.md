@@ -62,7 +62,7 @@ Một **phương án lịch trình** cho một `Trip`. Hệ thống sinh ba phư
 ba `TravelStyle`; người dùng chọn một làm phương án chính thức.
 
 ```
-Trip (Đà Nẵng, 4 ngày, 8 triệu)
+Trip (TP.HCM, 4 ngày, 8 triệu)
  ├── Itinerary A   (TravelStyle = Budget)
  ├── Itinerary B   (TravelStyle = Balanced)   ← người dùng chọn
  └── Itinerary C   (TravelStyle = Experience)

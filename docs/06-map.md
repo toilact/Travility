@@ -87,7 +87,7 @@ Hợp đồng thông điệp đề xuất (chốt sớm, đừng đổi giữa c
 ### Tuần 1 — Dựng khung, chưa cần DB
 
 1. Nhúng WebView2 vào một Form, load `map.html` từ thư mục local.
-2. Hiện bản đồ Leaflet với tile OSM, center ở Đà Nẵng.
+2. Hiện bản đồ Leaflet với tile OSM, center ở TP.HCM.
 3. Đọc một file `places.json` tĩnh (~30 điểm), vẽ marker.
 4. Click marker → gửi `placeId` về C# → hiện `MessageBox` là đủ cho tuần 1.
 
@@ -110,7 +110,7 @@ Hợp đồng thông điệp đề xuất (chốt sớm, đừng đổi giữa c
 
 ### Tuần 6 — Bảo hiểm demo
 
-**Tải trước tile khu vực Đà Nẵng về máy.** Đây là bảo hiểm demo rẻ nhất của cả
+**Tải trước tile khu vực TP.HCM về máy.** Đây là bảo hiểm demo rẻ nhất của cả
 đồ án: mất mạng lúc bảo vệ vẫn hiện được bản đồ.
 
 ---

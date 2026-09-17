@@ -16,7 +16,7 @@ Buổi bảo vệ diễn ra trên laptop cá nhân, mạng phòng học không c
 ## Quyết định
 
 **Leaflet.js + tile OpenStreetMap**, nhúng trong WebView2. Thư viện `.js`/`.css`
-để trong thư mục local, không load từ CDN. Tile khu vực Đà Nẵng tải sẵn về máy.
+để trong thư mục local, không load từ CDN. Tile khu vực TP.HCM tải sẵn về máy.
 
 ## Hệ quả
 

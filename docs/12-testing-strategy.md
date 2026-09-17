@@ -72,9 +72,9 @@ Engine test trên `List<Place>` **tạo trong code**, không đọc CSDL. Viết
 ```csharp
 var places = new[]
 {
-    Place("Bảo tàng Chàm", lat: 16.06, lng: 108.22, rating: 4.5m,
+      Place("Bưu điện Thành phố", lat: 10.7798, lng: 106.6990, rating: 4.5m,
           reviews: 1200, visitMinutes: 90, open: "08:00", close: "17:00"),
-    Place("Biển Mỹ Khê",   lat: 16.06, lng: 108.24, rating: 4.7m,
+      Place("Chợ Bến Thành",   lat: 10.7725, lng: 106.6980, rating: 4.7m,
           reviews: 8200, visitMinutes: 180, open: "05:00", close: "19:00"),
 };
 ```

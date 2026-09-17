@@ -94,7 +94,7 @@ Không có trường này thì `PreferenceScore` trong Recommendation Engine kh�
 
 ## 5. Dataset
 
-**120–150 `Place`, một thành phố (Đà Nẵng)**, nhập tay bằng Excel → script import.
+**120–150 `Place`, một thành phố (TP.HCM)**, nhập tay bằng Excel → script import.
 
 Đủ để Top-K có ý nghĩa (chọn 5 trong 40 khách sạn là bài toán thật) và routing có
 không gian nghiệm, mà một người làm xong trong 5–7 ngày.

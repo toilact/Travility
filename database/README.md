@@ -3,7 +3,7 @@
 ```
 schema.sql            Định nghĩa bảng, khoá, index, stored procedure
 seed_categories.sql   Danh mục địa điểm, nhóm ngân sách, huy hiệu
-seed_places.sql       120–150 Place khu vực Đà Nẵng
+seed_places.sql       120–150 Place khu vực TP.HCM
 seed_transport.sql    TransportOptions (dữ liệu mô phỏng)
 seed_demo.sql         Tài khoản demo có sẵn Trip và Achievement
 ```

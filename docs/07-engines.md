@@ -160,8 +160,8 @@ Với mỗi TravelStyle (Budget / Balanced / Experience):
 
 ### Tầng 2 là tầng quan trọng nhất
 
-Bỏ nó đi sẽ sinh ra lịch trình vô lý kiểu *sáng lên Bà Nà, trưa xuống biển Mỹ
-Khê, chiều lại lên núi*. Đây cũng là thứ **nhìn thấy được trên bản đồ lúc demo** —
+Bỏ nó đi sẽ sinh ra lịch trình vô lý kiểu *sáng ở Thảo Cầm Viên, trưa qua Chợ
+Bến Thành, chiều lại sang Landmark 81*. Đây cũng là thứ **nhìn thấy được trên bản đồ lúc demo** —
 mỗi ngày một cụm, một màu. Ăn điểm trực tiếp.
 
 Cách làm đơn giản mà đủ: k-means trên (lat, lng) với k = số ngày, hoặc chia theo

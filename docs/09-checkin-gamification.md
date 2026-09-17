@@ -23,7 +23,7 @@ gắn bộ thu GPS; đó là linh kiện của điện thoại và một số m�
 sai số thường từ ~100m tới vài km.
 
 **Thứ hai, và đây mới là vấn đề thật:** lúc bảo vệ nhóm **ngồi trong phòng học,
-không đứng ở Bà Nà Hills**. Khoảng cách tới mọi POI trong dataset sẽ là hàng km,
+không đứng ở các địa điểm du lịch tại TP.HCM**. Khoảng cách tới mọi POI trong dataset sẽ là hàng km,
 nên điều kiện `<= 150m` (đặc tả §11.1) sẽ **luôn thất bại** bất kể phần cứng tốt
 đến đâu.
 
